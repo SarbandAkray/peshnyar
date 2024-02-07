@@ -7,7 +7,7 @@ import axios from "axios";
 export default function ({
   setFilteredData,
 }: {
-  setFilteredData: React.Dispatch<React.SetStateAction<string>>;
+  setFilteredData: React.Dispatch<React.SetStateAction<never[]>>;
 }) {
   const options = [];
 

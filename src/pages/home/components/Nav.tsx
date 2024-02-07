@@ -52,15 +52,16 @@ export default function Nav({
           <li className="uppercase text-sm">
             <Menu>
               <MenuHandler>
-                <Button className="text-md font-thin focus:border-none">
+                <Button className="text-md font-thin focus:border-none" placeholder={undefined}>
                   Categories
                 </Button>
               </MenuHandler>
-              <MenuList className="text-md font-thin text-primaryColor">
+              <MenuList className="text-md font-thin text-primaryColor" placeholder={undefined}>
                 {cats
                   ? cats.map((cat) => {
                       return (
                         <MenuItem
+                        placeholder={undefined}
                           key={cat.id}
                           onClick={() => {
                             navigate("/category/" + cat.id);
@@ -165,15 +166,16 @@ export default function Nav({
             <li className="border-b border-gray-400 my-8 uppercase">
               <Menu>
                 <MenuHandler>
-                  <Button className="text-md font-thin focus:border-none">
+                  <Button className="text-md font-thin focus:border-none" placeholder={undefined}>
                     Categories
                   </Button>
                 </MenuHandler>
-                <MenuList className="text-md font-thin text-primaryColor">
+                <MenuList className="text-md font-thin text-primaryColor" placeholder={undefined}>
                   {cats
                     ? cats.map((cat) => {
                         return (
                           <MenuItem
+                          placeholder={undefined}
                             key={cat.id}
                             onClick={() => {
                               navigate("/category/" + cat.id);

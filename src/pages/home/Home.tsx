@@ -1,4 +1,4 @@
-/* eslint-disable no-var */
+
 import { useEffect, useState } from "react";
 import Filter from "./components/Filter";
 import Nav from "./components/Nav";
@@ -6,8 +6,11 @@ import axios from "axios";
 import { baseApiUrl } from "../../global/api/api_url";
 import Contents from "./components/Contents";
 import Content from "./components/Content";
+import { useTranslation } from 'react-i18next';
+
 
 function Home() {
+  const { t,i18n } = useTranslation();
   const [search, setSearch] = useState("");
   const [categories, setCategories] = useState([]);
   const [searchedData, setSearchedData] = useState([]);
@@ -30,17 +33,24 @@ function Home() {
     console.log(result.data);
     setSearchedData(result.data);
   };
+
   const getAllCategories = async () => {
+    
     const result = await axios.get(baseApiUrl + "categories");
     setCategories(result.data.slice(0, 10));
   };
+  
 
   return (
     <>
       <div className="w-screen min-h-screen bg-primaryColor ">
+        {t("hi")};
+        <button onClick={()=>{
+            i18n.changeLanguage("krd");
+        }}>ss</button>
         <Nav setSearch={setSearch} />
         <Filter setFilteredData={setFilteredData} />
-
+      
         <div className="mt-20">
           {filteredData.length ? (
             <div className="flex justify-center flex-wrap gap-5">
