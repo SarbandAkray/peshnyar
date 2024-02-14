@@ -10,6 +10,7 @@ import { ThemeProvider } from "@material-tailwind/react";
 import Category from "./pages/category/Category.tsx";
 import Search from "./pages/search/Search.tsx";
 import './i18n/config';
+import DashboardAdmin from "./admin/pages/dashboard/DashboardAdmin.tsx";
 
 const router = createBrowserRouter([
   {
@@ -35,14 +36,19 @@ const router = createBrowserRouter([
     path: "login",
     element: <Login />,
   },
+  {
+    path: "/admin",
+    element: <DashboardAdmin />,
+    errorElement: <Error />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ThemeProvider>
-    
+ 
       <RouterProvider router={router} />
-   
+ 
     </ThemeProvider>
   </React.StrictMode>
 );

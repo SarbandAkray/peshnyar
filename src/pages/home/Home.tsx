@@ -44,10 +44,7 @@ function Home() {
   return (
     <>
       <div className="w-screen min-h-screen bg-primaryColor ">
-        {t("hi")};
-        <button onClick={()=>{
-            i18n.changeLanguage("krd");
-        }}>ss</button>
+      
         <Nav setSearch={setSearch} />
         <Filter setFilteredData={setFilteredData} />
       
