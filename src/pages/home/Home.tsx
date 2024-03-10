@@ -40,7 +40,7 @@ function Home() {
   return (
     <>
       <div className="w-screen min-h-screen bg-primaryColor ">
-        <Nav setSearch={setSearch} />
+        <Nav setSearch={setSearch} isSearchAvailable={true} />
         <div className="mt-20">
           {filteredData.length ? (
             <div className="flex justify-center flex-wrap gap-5">

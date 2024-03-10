@@ -1,0 +1,37 @@
+import { Dispatch, useEffect, useState } from "react";
+import { Content } from "../../globals";
+import Nav from "../home/components/Nav";
+import HeaderPart from "./components/HeaderPart";
+import { useParams } from "react-router-dom";
+import { getdetail } from "./services/getdetails";
+import Comments from "./components/Comments";
+
+export default function ContentDetails() {
+  const [content, setContent]: [Content, Dispatch<any>] = useState(null);
+  const { id } = useParams();
+
+  useEffect(() => {
+    details();
+  }, [id]);
+
+  const details = async () => {
+    const data = await getdetail(parseInt(id));
+    setContent(data);
+  };
+
+  return (
+    <div className="w-screen min-h-screen bg-primaryColor ">
+      {content ? (
+        <>
+          <Nav isSearchAvailable={false} />
+          <HeaderPart
+            title={content.title}
+            img={content.img_url}
+            details={content.details}
+          />
+          <Comments comments={content.reviews} />
+        </>
+      ) : null}
+    </div>
+  );
+}

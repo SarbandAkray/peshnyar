@@ -1,4 +1,5 @@
 export type Content = {
+  id: int;
   title: string;
   details: string;
   img_url: string;
@@ -51,4 +52,14 @@ export type Content = {
       };
     }
   ];
+  reviews?: {
+    comment?: string;
+    rate: number;
+    users: {
+      name: string;
+      img_url: string;
+    };
+    updated_at: string;
+    created_at: string;
+  }[];
 };

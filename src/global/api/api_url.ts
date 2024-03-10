@@ -1,1 +1,2 @@
-export const baseApiUrl = "http://localhost:3000/api/v1/";
+export const baseApiUrl = "http://192.168.0.20:3000/api/v1/";
+export const baseBackendUrl = "http://192.168.0.20:3000";

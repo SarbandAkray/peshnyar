@@ -13,8 +13,10 @@ import { useTranslation } from "react-i18next";
 
 export default function Nav({
   setSearch,
+  isSearchAvailable,
 }: {
-  setSearch: React.Dispatch<React.SetStateAction<string>>;
+  setSearch?: React.Dispatch<React.SetStateAction<string>>;
+  isSearchAvailable?: boolean;
 }) {
   const { t, i18n } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
@@ -89,14 +91,14 @@ export default function Nav({
           {/* languages */}
           <li className="uppercase text-sm">
             <Menu>
-              <MenuHandler>
+              {/* <MenuHandler>
                 <Button
                   className="text-md font-thin focus:border-none"
                   placeholder={undefined}
                 >
                   Languages
                 </Button>
-              </MenuHandler>
+              </MenuHandler> */}
               <MenuList
                 className="text-md font-thin text-primaryColor"
                 placeholder={undefined}
@@ -122,28 +124,32 @@ export default function Nav({
       </div>
 
       {/* search */}
-      <div className="lg:ms-[-20rem]">
-        <div className="relative w-full">
-          <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none ">
-            <img
-              src="/assets/home/search.svg"
-              alt=""
-              width={15}
-              className="z-10 cursor-pointer"
+      {isSearchAvailable ? (
+        <div className="lg:ms-[-20rem]">
+          <div className="relative w-full">
+            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none ">
+              <img
+                src="/assets/home/search.svg"
+                alt=""
+                width={15}
+                className="z-10 cursor-pointer"
+              />
+            </div>
+            <input
+              type="text"
+              id="voice-search"
+              className="bg-lightGray border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Search"
+              required
+              onChange={(event: React.FormEvent<HTMLInputElement>) => {
+                setSearchTerm(event.currentTarget.value);
+              }}
             />
           </div>
-          <input
-            type="text"
-            id="voice-search"
-            className="bg-lightGray border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Search"
-            required
-            onChange={(event: React.FormEvent<HTMLInputElement>) => {
-              setSearchTerm(event.currentTarget.value);
-            }}
-          />
         </div>
-      </div>
+      ) : (
+        <></>
+      )}
 
       {/* user icon instead of humburger menu*/}
       <div className="lg:flex hidden gap-3  text-sm">

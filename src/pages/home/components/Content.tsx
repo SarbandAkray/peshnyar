@@ -7,19 +7,46 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { Content } from "../../../globals";
+import { baseBackendUrl } from "../../../global/api/api_url";
+import { useNavigate } from "react-router-dom";
 
 export default function Content({ content }: { content: Content }) {
+  const navigate = useNavigate();
+  const ContentDetails = (content: Content) => {
+    navigate(`/content/${content.id}`);
+  };
+
   return (
-    <Card className="mt-6 w-96" placeholder={undefined}>
-      <CardHeader color="blue-gray" className="relative h-56" placeholder={undefined}>
-        <img src={"http://localhost:3000" + content.img_url} alt="card-image" />
+    <Card
+      className="mt-6 w-[15em]  sm:w-[20em]"
+      placeholder={undefined}
+      onClick={() => ContentDetails(content)}
+    >
+      <CardHeader
+        color="blue-gray"
+        className="relative h-56"
+        placeholder={undefined}
+      >
+        <img
+          src={baseBackendUrl + content.img_url}
+          alt="card-image"
+          className="w-full h-full object-cover"
+        />
       </CardHeader>
-      <CardBody placeholder={undefined}>
-        <Typography variant="h5" color="blue-gray" className="mb-2" placeholder={undefined}>
+      <CardBody
+        placeholder={undefined}
+        className="max-h-[13rem] overflow-auto sm:max-h-[100%]"
+      >
+        <Typography
+          variant="h5"
+          color="blue-gray"
+          className="mb-2"
+          placeholder={undefined}
+        >
           {content.title}
         </Typography>
-        <Typography  placeholder={undefined}>{content.details}</Typography>
-        <Typography className="font-bold"  placeholder={"undefined"}>
+        <Typography placeholder={undefined}>{content.details}</Typography>
+        <Typography className="font-bold" placeholder={"undefined"}>
           Genre: {content.contents_genre[0].genre.name}
         </Typography>
         <Typography className="font-bold" placeholder={undefined}>
@@ -27,17 +54,18 @@ export default function Content({ content }: { content: Content }) {
           {content.general_age_group[0].age_smaller} yrs
         </Typography>
       </CardBody>
-
-      <CardFooter className="pt-0" placeholder={undefined}>
-        {content.age_group_specification.map((age) => {
-          return (
-            <Typography className="text-redColor" placeholder={undefined}>
-              {age.rating_name.name}
-              {""} : {age.age_bigger} yrs - {age.age_smaller} yrs
-            </Typography>
-          );
-        })}
-      </CardFooter>
+      <div className="max-h-[0rem] overflow-auto sm:max-h-[100%]">
+        <CardFooter className="pt-0" placeholder={undefined}>
+          {content.age_group_specification.map((age) => {
+            return (
+              <Typography className="text-redColor" placeholder={undefined}>
+                {age.rating_name.name}
+                {""} : {age.age_bigger} yrs - {age.age_smaller} yrs
+              </Typography>
+            );
+          })}
+        </CardFooter>
+      </div>
     </Card>
   );
 }
