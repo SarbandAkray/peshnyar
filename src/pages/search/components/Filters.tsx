@@ -57,133 +57,134 @@ export default function ({
   };
 
   return (
-    <div className="w-screen items-center justify-center flex mt-4 ">
-      <div className="flex max-w-md flex-wrap gap-4 ">
-        <div>
-          <h1>
-            <h1 className="text-white">Violence</h1>
-          </h1>
-          <div className="flex gap-2">
-            <div>
-              <p className="text-white">age older</p>
-              <select
-                name="bigger"
-                id=""
-                className="w-24  mt-2"
-                onChange={(e) => setVBigger(e.target.value)}
-              >
-                {options}
-              </select>
+    <div className="w-screen flex flex-col justify-center items-center">
+      <div className="w-screen items-center justify-center flex mt-4 mb-2">
+        <div className="flex max-w-md flex-wrap gap-4 justify-center ">
+          <div>
+            <h1>
+              <h1 className="text-white">Violence</h1>
+            </h1>
+            <div className="flex gap-2">
+              <div>
+                <p className="text-white">age older</p>
+                <select
+                  name="bigger"
+                  id=""
+                  className="w-24  mt-2"
+                  onChange={(e) => setVBigger(e.target.value)}
+                >
+                  {options}
+                </select>
+              </div>
+              <div>
+                <p className="text-white">age younger</p>
+                <select
+                  name="smaller"
+                  id=""
+                  className="w-24  mt-2"
+                  onChange={(e) => setVSmaller(e.target.value)}
+                >
+                  {options}
+                </select>
+              </div>
             </div>
-            <div>
-              <p className="text-white">age younger</p>
-              <select
-                name="smaller"
-                id=""
-                className="w-24  mt-2"
-                onChange={(e) => setVSmaller(e.target.value)}
-              >
-                {options}
-              </select>
+          </div>
+          <div>
+            <h1>
+              <h1 className="text-white">Nudity</h1>
+            </h1>
+            <div className="flex gap-2">
+              <div>
+                <p className="text-white">age older</p>
+                <select
+                  name="bigger"
+                  id=""
+                  className="w-24  mt-2"
+                  onChange={(e) => setNBigger(e.target.value)}
+                >
+                  {options}
+                </select>
+              </div>
+              <div>
+                <p className="text-white">age younger</p>
+                <select
+                  name="smaller"
+                  id=""
+                  className="w-24  mt-2"
+                  onChange={(e) => setNSmaller(e.target.value)}
+                >
+                  {options}
+                </select>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h1>
+              <h1 className="text-white">Horror</h1>
+            </h1>
+            <div className="flex gap-2">
+              <div>
+                <p className="text-white">age older</p>
+                <select
+                  name="bigger"
+                  id=""
+                  className="w-24  mt-2"
+                  onChange={(e) => setHBigger(e.target.value)}
+                >
+                  {options}
+                </select>
+              </div>
+              <div>
+                <p className="text-white">age younger</p>
+                <select
+                  name="smaller"
+                  id=""
+                  className="w-24  mt-2"
+                  onChange={(e) => setHSmaller(e.target.value)}
+                >
+                  {options}
+                </select>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h1>
+              <h1 className="text-white">Drugs</h1>
+            </h1>
+            <div className="flex gap-2">
+              <div>
+                <p className="text-white">age older</p>
+                <select
+                  name="bigger"
+                  id=""
+                  className="w-24  mt-2"
+                  onChange={(e) => setDBigger(e.target.value)}
+                >
+                  {options}
+                </select>
+              </div>
+              <div>
+                <p className="text-white">age younger</p>
+                <select
+                  name="smaller"
+                  id=""
+                  className="w-24  mt-2"
+                  onChange={(e) => setDSmaller(e.target.value)}
+                >
+                  {options}
+                </select>
+              </div>
             </div>
           </div>
         </div>
-        <div>
-          <h1>
-            <h1 className="text-white">Nudity</h1>
-          </h1>
-          <div className="flex gap-2">
-            <div>
-              <p className="text-white">age older</p>
-              <select
-                name="bigger"
-                id=""
-                className="w-24  mt-2"
-                onChange={(e) => setNBigger(e.target.value)}
-              >
-                {options}
-              </select>
-            </div>
-            <div>
-              <p className="text-white">age younger</p>
-              <select
-                name="smaller"
-                id=""
-                className="w-24  mt-2"
-                onChange={(e) => setNSmaller(e.target.value)}
-              >
-                {options}
-              </select>
-            </div>
-          </div>
-        </div>
-        <div>
-          <h1>
-            <h1 className="text-white">Horror</h1>
-          </h1>
-          <div className="flex gap-2">
-            <div>
-              <p className="text-white">age older</p>
-              <select
-                name="bigger"
-                id=""
-                className="w-24  mt-2"
-                onChange={(e) => setHBigger(e.target.value)}
-              >
-                {options}
-              </select>
-            </div>
-            <div>
-              <p className="text-white">age younger</p>
-              <select
-                name="smaller"
-                id=""
-                className="w-24  mt-2"
-                onChange={(e) => setHSmaller(e.target.value)}
-              >
-                {options}
-              </select>
-            </div>
-          </div>
-        </div>
-        <div>
-          <h1>
-            <h1 className="text-white">Drugs</h1>
-          </h1>
-          <div className="flex gap-2">
-            <div>
-              <p className="text-white">age older</p>
-              <select
-                name="bigger"
-                id=""
-                className="w-24  mt-2"
-                onChange={(e) => setDBigger(e.target.value)}
-              >
-                {options}
-              </select>
-            </div>
-            <div>
-              <p className="text-white">age younger</p>
-              <select
-                name="smaller"
-                id=""
-                className="w-24  mt-2"
-                onChange={(e) => setDSmaller(e.target.value)}
-              >
-                {options}
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <Button
-          onClick={() => {
-            getFilteredData();
-          }}
-        >
-          <p>Search</p>
-        </Button>
       </div>
+      <Button
+        onClick={() => {
+          getFilteredData();
+        }}
+      >
+        <p>Search</p>
+      </Button>
     </div>
   );
 }

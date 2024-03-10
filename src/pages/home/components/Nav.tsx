@@ -9,12 +9,14 @@ import {
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { baseApiUrl } from "../../../global/api/api_url";
+import { useTranslation } from "react-i18next";
 
 export default function Nav({
   setSearch,
 }: {
   setSearch: React.Dispatch<React.SetStateAction<string>>;
 }) {
+  const { t, i18n } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [cats, setCats] = useState([]);
@@ -41,7 +43,8 @@ export default function Nav({
 
   return (
     <div className="w-screen flex items-center justify-between px-10 min-h-[5rem] h-fit  bg-lightGray gap-5">
-      <div className="flex gap-4 sm:flex-col md:flex-col lg:flex-row">
+      {/* desktop nav */}
+      <div className="flex  sm:flex-col md:flex-col lg:flex-row">
         <img
           src="/assets/home/logo.svg"
           alt=""
@@ -49,19 +52,26 @@ export default function Nav({
           onClick={() => (window.location.href = "/")}
         />
         <ul className="hidden gap-2  items-center justify-between text-white  lg:flex">
+          {/* categories */}
           <li className="uppercase text-sm">
             <Menu>
               <MenuHandler>
-                <Button className="text-md font-thin focus:border-none" placeholder={undefined}>
+                <Button
+                  className="text-md font-thin focus:border-none"
+                  placeholder={undefined}
+                >
                   Categories
                 </Button>
               </MenuHandler>
-              <MenuList className="text-md font-thin text-primaryColor" placeholder={undefined}>
+              <MenuList
+                className="text-md font-thin text-primaryColor"
+                placeholder={undefined}
+              >
                 {cats
                   ? cats.map((cat) => {
                       return (
                         <MenuItem
-                        placeholder={undefined}
+                          placeholder={undefined}
                           key={cat.id}
                           onClick={() => {
                             navigate("/category/" + cat.id);
@@ -75,12 +85,43 @@ export default function Nav({
               </MenuList>
             </Menu>
           </li>
+
+          {/* languages */}
+          <li className="uppercase text-sm">
+            <Menu>
+              <MenuHandler>
+                <Button
+                  className="text-md font-thin focus:border-none"
+                  placeholder={undefined}
+                >
+                  Languages
+                </Button>
+              </MenuHandler>
+              <MenuList
+                className="text-md font-thin text-primaryColor"
+                placeholder={undefined}
+              >
+                <MenuItem placeholder={undefined} onClick={() => {}}>
+                  english
+                </MenuItem>
+                <MenuItem placeholder={undefined} onClick={() => {}}>
+                  arabic
+                </MenuItem>
+                <MenuItem placeholder={undefined} onClick={() => {}}>
+                  kurdish
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          </li>
+
+          {/* search Engine */}
           <li className="uppercase text-sm">
             <a href="/search">Search Engine</a>
           </li>
         </ul>
       </div>
 
+      {/* search */}
       <div className="lg:ms-[-20rem]">
         <div className="relative w-full">
           <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none ">
@@ -104,7 +145,7 @@ export default function Nav({
         </div>
       </div>
 
-      {/*  tablet and  desktop*/}
+      {/* user icon instead of humburger menu*/}
       <div className="lg:flex hidden gap-3  text-sm">
         <div
           className="flex gap-2 cursor-pointer items-center"
@@ -115,7 +156,7 @@ export default function Nav({
         </div>
       </div>
 
-      {/* mobile navigation */}
+      {/* hamburger menu */}
       <div className="lg:hidden">
         <div
           className="HAMBURGER-ICON space-y-2"
@@ -166,16 +207,22 @@ export default function Nav({
             <li className="border-b border-gray-400 my-8 uppercase">
               <Menu>
                 <MenuHandler>
-                  <Button className="text-md font-thin focus:border-none" placeholder={undefined}>
+                  <Button
+                    className="text-md font-thin focus:border-none"
+                    placeholder={undefined}
+                  >
                     Categories
                   </Button>
                 </MenuHandler>
-                <MenuList className="text-md font-thin text-primaryColor" placeholder={undefined}>
+                <MenuList
+                  className="text-md font-thin text-primaryColor"
+                  placeholder={undefined}
+                >
                   {cats
                     ? cats.map((cat) => {
                         return (
                           <MenuItem
-                          placeholder={undefined}
+                            placeholder={undefined}
                             key={cat.id}
                             onClick={() => {
                               navigate("/category/" + cat.id);
