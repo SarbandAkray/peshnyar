@@ -24,8 +24,8 @@ export default function HeaderPart({
         <h1 className="uppercase">{title}</h1>
       </div>
 
-      <div className="flex  justify-center mt-5 text-white">
-        <h5 className="uppercase">{details}</h5>
+      <div className="flex  justify-center mt-5 text-white px-10 py-4">
+        <h5 className="">{details}</h5>
       </div>
     </div>
   );

@@ -1,7 +1,5 @@
-
 import { Content } from "../../../globals";
 import { baseBackendUrl } from "../../../global/api/api_url";
-
 
 export default function Comment({
   comment,
@@ -39,7 +37,7 @@ export default function Comment({
   }
 
   return (
-    <article className="p-6 mb-3 text-base bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-gray-900 rounded-md  md:w-80">
+    <article className="p-6 w-screen mb-3 text-base bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-gray-900 rounded-md  md:w-80">
       <footer className="flex justify-between items-center mb-2">
         <div className="flex items-center">
           <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">

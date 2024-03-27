@@ -18,7 +18,7 @@ export default function Content({ content }: { content: Content }) {
 
   return (
     <Card
-      className="mt-6 w-[15em]  sm:w-[20em]"
+      className="mt-6 w-[20em]  sm:w-[20em]"
       placeholder={undefined}
       onClick={() => ContentDetails(content)}
     >
@@ -45,7 +45,9 @@ export default function Content({ content }: { content: Content }) {
         >
           {content.title}
         </Typography>
-        <Typography placeholder={undefined}>{content.details}</Typography>
+        <Typography placeholder={undefined} className="hidden sm:block">
+          {content.details}
+        </Typography>
         <Typography className="font-bold" placeholder={"undefined"}>
           Genre: {content.contents_genre[0].genre.name}
         </Typography>

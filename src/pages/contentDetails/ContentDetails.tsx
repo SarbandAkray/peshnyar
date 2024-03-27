@@ -5,6 +5,7 @@ import HeaderPart from "./components/HeaderPart";
 import { useParams } from "react-router-dom";
 import { getdetail } from "./services/getdetails";
 import Comments from "./components/Comments";
+import BodyPart from "./components/BodyPart";
 
 export default function ContentDetails() {
   const [content, setContent]: [Content, Dispatch<any>] = useState(null);
@@ -28,6 +29,10 @@ export default function ContentDetails() {
             title={content.title}
             img={content.img_url}
             details={content.details}
+          />
+          <BodyPart
+            ratings={content.age_group_specification}
+            genres={content.contents_genre}
           />
           <Comments comments={content.reviews} />
         </>
