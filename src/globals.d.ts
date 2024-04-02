@@ -29,6 +29,7 @@ export type Content = {
       rating_name: {
         name: string;
       };
+      details: string;
     },
     {
       age_smaller: number;
@@ -36,6 +37,7 @@ export type Content = {
       rating_name: {
         name: string;
       };
+      details: string;
     },
     {
       age_smaller: number;
@@ -43,6 +45,7 @@ export type Content = {
       rating_name: {
         name: string;
       };
+      details: string;
     },
     {
       age_smaller: number;
@@ -50,6 +53,7 @@ export type Content = {
       rating_name: {
         name: string;
       };
+      details: string;
     }
   ];
   reviews?: {
