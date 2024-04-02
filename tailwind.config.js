@@ -1,13 +1,15 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 const withMT = require("@material-tailwind/react/utils/withMT");
 
-export default withMT( {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}",
-"./node_modules/@material-tailwind/react/components/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}",],
+export default withMT({
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@material-tailwind/react/components/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {
-      
       fontFamily: {
         sans: ["roboto-regular", ...defaultTheme.fontFamily.sans],
       },
@@ -19,7 +21,6 @@ export default withMT( {
       redColor: "#BE1902",
       white: "white",
     },
-    
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/line-clamp")],
 });

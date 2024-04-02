@@ -49,7 +49,7 @@ function Home() {
               })}
             </div>
           ) : searchedData.length ? (
-            <div className="flex justify-center flex-wrap gap-5">
+            <div className="flex justify-center flex-wrap gap-5 ">
               {searchedData.map((data) => {
                 return <Content content={data} />;
               })}
@@ -62,7 +62,7 @@ function Home() {
                     <h1 className="text-white text-4xl">{category.name}</h1>
                   </div>
                   <div className="flex justify-center">
-                    <div className="flex  justify-center flex-wrap  gap-10 w-100">
+                    <div className="flex  justify-center flex-wrap  gap-2 w-100 sm:gap-3 md:gap-6">
                       <Contents id={category.id} />
                     </div>
                   </div>

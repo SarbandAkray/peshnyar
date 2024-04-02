@@ -29,7 +29,10 @@
     align-items: center;
     color: white;
   }
-  .hover\:text-shadow:hover p {
-    text-shadow: 20px 20px 40px rgb(255, 255, 255);
+  .line-clamp-custom {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 1; /* Number of lines to show */
   }
 }

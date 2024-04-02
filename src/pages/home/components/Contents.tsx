@@ -9,7 +9,7 @@ export default function Contents({ id }: { id: string }) {
   }, []);
   const getContents = async () => {
     const result = await axios.get(baseApiUrl + "contents/category?id=" + id);
-    setContents(result.data.slice(0, 10));
+    setContents(result.data.slice(0, 5));
   };
 
   return contents

@@ -1,5 +1,4 @@
 import {
-  Button,
   Card,
   CardBody,
   CardFooter,
@@ -18,13 +17,13 @@ export default function Content({ content }: { content: Content }) {
 
   return (
     <Card
-      className="mt-6 w-[20em]  sm:w-[20em]"
+      className="mt-6 mb-4 w-[11em] h-[22em]  sm:w-[20em] sm:h-[33em] "
       placeholder={undefined}
       onClick={() => ContentDetails(content)}
     >
       <CardHeader
         color="blue-gray"
-        className="relative h-56"
+        className="relative h-[14em] w-[10em]  ms-2  sm:mx-auto sm:h-[20em] sm:w-[15em]"
         placeholder={undefined}
       >
         <img
@@ -35,28 +34,40 @@ export default function Content({ content }: { content: Content }) {
       </CardHeader>
       <CardBody
         placeholder={undefined}
-        className="max-h-[13rem] overflow-auto sm:max-h-[100%]"
+        className="max-h-[13rem] overflow-auto w-full px-2 py-2 sm:max-h-[100%] sm:overflow-hidden "
       >
         <Typography
-          variant="h5"
+          variant="paragraph"
           color="blue-gray"
           className="mb-2"
           placeholder={undefined}
         >
           {content.title}
         </Typography>
-        <Typography placeholder={undefined} className="hidden sm:block">
+        <Typography
+          placeholder={undefined}
+          className="hidden sm:block  sm:line-clamp-2"
+          variant="small"
+        >
           {content.details}
         </Typography>
-        <Typography className="font-bold" placeholder={"undefined"}>
+        <Typography
+          className="font-bold p-0"
+          placeholder={"undefined"}
+          variant="small"
+        >
           Genre: {content.contents_genre[0].genre.name}
         </Typography>
-        <Typography className="font-bold" placeholder={undefined}>
+        <Typography
+          className="font-bold p-0"
+          placeholder={undefined}
+          variant="small"
+        >
           Restriction: {content.general_age_group[0].age_bigger} yrs -{" "}
           {content.general_age_group[0].age_smaller} yrs
         </Typography>
       </CardBody>
-      <div className="max-h-[0rem] overflow-auto sm:max-h-[100%]">
+      <div className="max-h-[0rem] overflow-auto sm:max-h-[100%] sm:overflow-hidden">
         <CardFooter className="pt-0" placeholder={undefined}>
           {content.age_group_specification.map((age) => {
             return (
