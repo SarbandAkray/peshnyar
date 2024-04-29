@@ -12,7 +12,10 @@ import Search from "./pages/search/Search.tsx";
 import "./i18n/config";
 import DashboardAdmin from "./admin/pages/dashboard/DashboardAdmin.tsx";
 import ContentDetails from "./pages/contentDetails/ContentDetails.tsx";
-
+import { configureStore } from "@reduxjs/toolkit";
+import UserReducer from "./reducers/userReducer.ts";
+import { Provider } from "react-redux";
+import userReducer from "./reducers/userReducer.ts";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -49,10 +52,39 @@ const router = createBrowserRouter([
   },
 ]);
 
+function saveToLocalStorage(store) {
+  try {
+    const serializedStore = JSON.stringify(store);
+    window.localStorage.setItem("store", serializedStore);
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+function loadFromLocalStorage() {
+  try {
+    const serializedStore = window.localStorage.getItem("store");
+    if (serializedStore === null) return undefined;
+    return JSON.parse(serializedStore);
+  } catch (e) {
+    console.log(e);
+    return undefined;
+  }
+}
+
+const persistedState = loadFromLocalStorage();
+
+export const store = configureStore({
+  reducer: { user: userReducer },
+});
+store.subscribe(() => saveToLocalStorage(store.getState()));
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ThemeProvider>
-      <RouterProvider router={router} />
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
     </ThemeProvider>
   </React.StrictMode>
 );
