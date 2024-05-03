@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { getdetail } from "./services/getdetails";
 import Comments from "./components/Comments";
 import BodyPart from "./components/BodyPart";
+import { useSelector } from "react-redux";
 
 export default function ContentDetails() {
   const [content, setContent]: [Content, Dispatch<any>] = useState(null);
@@ -19,6 +20,8 @@ export default function ContentDetails() {
     const data = await getdetail(parseInt(id));
     setContent(data);
   };
+
+  var token = useSelector((state: any) => state.user.user_session);
 
   return (
     <div className="w-screen min-h-screen bg-primaryColor ">
@@ -34,7 +37,7 @@ export default function ContentDetails() {
             ratings={content.age_group_specification}
             genres={content.contents_genre}
           />
-          <Comments comments={content.reviews} />
+          <Comments comments={content.reviews} token={token} />
         </>
       ) : null}
     </div>

@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* font of the webiste */
 @layer base {
   @font-face {
     font-family: "roboto-regular";
@@ -10,6 +11,7 @@
   }
 }
 
+/* menu needed css */
 @layer components {
   .hideMenuNav {
     display: none;
@@ -35,4 +37,12 @@
     overflow: hidden;
     -webkit-line-clamp: 1; /* Number of lines to show */
   }
+}
+
+/* button background chaging */
+.MuiLoadingButton-loadingIndicator {
+  color: white !important;
+}
+.MuiButton-colorError {
+  background-color: red !important;
 }

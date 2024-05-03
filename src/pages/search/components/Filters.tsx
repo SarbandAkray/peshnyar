@@ -7,7 +7,7 @@ import { Button } from "@material-tailwind/react";
 export default function ({
   setContents,
 }: {
-  setContents: React.Dispatch<React.SetStateAction<string>>;
+  setContents: React.Dispatch<React.SetStateAction<any>>;
 }) {
   const options = [];
 
@@ -182,6 +182,7 @@ export default function ({
         onClick={() => {
           getFilteredData();
         }}
+        placeholder={undefined}
       >
         <p>Search</p>
       </Button>

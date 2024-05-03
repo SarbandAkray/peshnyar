@@ -1,14 +1,31 @@
 import { useDispatch } from "react-redux";
 import { signup } from "../services/signup";
+import { useState } from "react";
+import { ErrorDialog } from "../../login/components/Dialog";
 
 export default function SignupBox() {
+  const [open, setOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   const dispatch = useDispatch();
   return (
     <div className="flex flex-col items-center justify-center min-w-screen  mt-11">
+      <ErrorDialog
+        open={open}
+        handleClose={handleClose}
+        errorMessage={errorMessage}
+      />
       <div className="w-[20rem] bg-lightGray rounded-t-md text-center p-3">
         <h1 className="text-white">Signup</h1>
       </div>
-      <form onSubmit={(e) => signup(e, dispatch)}>
+      <form onSubmit={(e) => signup(e, dispatch, handleClickOpen, setErrorMessage)}>
         <div className="w-[20rem] bg-secondaryColor rounded-b-lg p-2 flex flex-col gap-4 pt-5">
           <div>
             <h1>username</h1>

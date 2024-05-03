@@ -6,7 +6,6 @@ import { baseApiUrl } from "../../global/api/api_url";
 import Contents from "./components/Contents";
 import Content from "./components/Content";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
 
 function Home() {
   const { t, i18n } = useTranslation();
@@ -14,7 +13,6 @@ function Home() {
   const [categories, setCategories] = useState([]);
   const [searchedData, setSearchedData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
-  const user = useSelector((state: any) => state.user);
 
   useEffect(() => {
     getAllCategories();
@@ -43,7 +41,7 @@ function Home() {
     <>
       <div className="w-screen min-h-screen bg-primaryColor ">
         <Nav setSearch={setSearch} isSearchAvailable={true} />
-        <h1>{user.user == null ? "not logged in" : user}</h1>
+
         <div className="mt-20">
           {filteredData.length ? (
             <div className="flex justify-center flex-wrap gap-5">

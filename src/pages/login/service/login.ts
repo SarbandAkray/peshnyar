@@ -1,23 +1,18 @@
 import axios from "axios";
 import { baseApiUrl } from "../../../global/api/api_url";
 import { updateUserInfo } from "../../../redux/reducers/userReducer";
+import { ErrorDialog } from "../components/Dialog";
 
-export const signup = async (e, dispatch, handleClickOpen, setErrorMessage) => {
+export const signin = async (e, dispatch, handleClickOpen, setErrorMessage) => {
   e.preventDefault();
   try {
     var form = e.target;
-    if (
-      form.email.value == null ||
-      form.password.value == null ||
-      form.username.value == null
-    ) {
-      setErrorMessage("Please fill alll the fields");
-      handleClickOpen();
+    if (form.email.value == null || form.password.value == null) {
+      alert("Please fill alll the fields");
     } else {
-      var response = await axios.post(`${baseApiUrl}user/register`, {
+      var response = await axios.post(`${baseApiUrl}user/login`, {
         email: form.email.value,
         password: form.password.value,
-        name: form.username.value,
       });
       if (response.data.accessToken != null) {
         await dispatch(updateUserInfo(response.data));

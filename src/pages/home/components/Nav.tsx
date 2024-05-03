@@ -8,8 +8,11 @@ import {
 } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { baseApiUrl } from "../../../global/api/api_url";
+import { baseApiUrl, baseBackendUrl } from "../../../global/api/api_url";
 import { useTranslation } from "react-i18next";
+import { User } from "../../../models/User";
+import { useSelector } from "react-redux";
+import { decodeToken } from "react-jwt";
 
 export default function Nav({
   setSearch,
@@ -22,6 +25,9 @@ export default function Nav({
   const [searchTerm, setSearchTerm] = useState("");
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [cats, setCats] = useState([]);
+  const user: User = decodeToken(
+    useSelector((state: any) => state.user).user_session?.accessToken.toString()
+  );
 
   const navigate = useNavigate();
 
@@ -155,10 +161,18 @@ export default function Nav({
       <div className="lg:flex hidden gap-3  text-sm">
         <div
           className="flex gap-2 cursor-pointer items-center"
-          onClick={() => (window.location.href = "/login")}
+          onClick={() => (window.location.href = "/profile")}
         >
-          <img src="/assets/home/user.svg" alt="" width={20} />
-          <p className="text-white">{"Test"}</p>
+          <img
+            src={
+              user == null
+                ? "/assets/home/user.svg"
+                : `${baseBackendUrl}${user.img_url}`
+            }
+            alt=""
+            width={20}
+          />
+          <p className="text-white">{user == null ? "Guest" : user.name}</p>
         </div>
       </div>
 
@@ -204,10 +218,12 @@ export default function Nav({
             <li className="border-b pb-1 border-gray-400 my-8 uppercase">
               <div
                 className="flex gap-2 cursor-pointer  "
-                onClick={() => (window.location.href = "/login")}
+                onClick={() => (window.location.href = "/profile")}
               >
                 <img src="/assets/home/user.svg" alt="" width={20} />
-                <p className="text-white">{"Test"}</p>
+                <p className="text-white">
+                  {user == null ? "Guest" : user.name}
+                </p>
               </div>
             </li>
             <li className="border-b border-gray-400 my-8 uppercase">
