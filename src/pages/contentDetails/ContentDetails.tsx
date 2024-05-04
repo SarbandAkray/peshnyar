@@ -37,7 +37,7 @@ export default function ContentDetails() {
             ratings={content.age_group_specification}
             genres={content.contents_genre}
           />
-          <Comments comments={content.reviews} token={token} />
+          <Comments comments={content.reviews} token={token} content_id={id} />
         </>
       ) : null}
     </div>

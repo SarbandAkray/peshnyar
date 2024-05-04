@@ -6,7 +6,7 @@ import { User } from "../../models/User";
 import CircularProgress from "@mui/material/CircularProgress";
 import { baseBackendUrl } from "../../global/api/api_url";
 import LoadingButton from "@mui/lab/LoadingButton";
-import { loading, updateUserInfo } from "../../redux/reducers/userReducer";
+import { updateUserInfo } from "../../redux/reducers/userReducer";
 
 export default function Profile() {
   let token = useSelector((state: any) => state.user.user_session.accessToken);

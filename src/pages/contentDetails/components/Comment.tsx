@@ -20,7 +20,7 @@ export default function Comment({
     const years = parseInt((time / (1000 * 60 * 60 * 24 * 30 * 12)).toString());
 
     // Determine the largest available time unit
-    console.log(days);
+
     if (years > 0) {
       return years + " years";
     } else if (months > 0) {
