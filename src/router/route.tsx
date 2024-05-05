@@ -7,10 +7,12 @@ import ContentDetails from "../pages/contentDetails/ContentDetails";
 import Signup from "../pages/signup/Signup";
 import Login from "../pages/login/Login";
 import DashboardAdmin from "../admin/pages/dashboard/DashboardAdmin";
-
 import UserAuthGuard from "./userAuthGuard";
 import Profile from "../pages/profile/Profile";
 import GuestAuthGuard from "./guestAuthGuard";
+import AdminLogin from "../admin/pages/login/Login";
+import AdminAuthGuard from "./adminAuthGuard";
+import AdminProfile from "../admin/pages/profile/Profile";
 
 export const router = createBrowserRouter([
   {
@@ -35,11 +37,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "signup",
-    element: <GuestAuthGuard Element={<Signup />} />,
+    element: <GuestAuthGuard Element={<Signup />} to={"/"} />,
   },
   {
     path: "login",
-    element: <GuestAuthGuard Element={<Login />} />,
+    element: <GuestAuthGuard Element={<Login />} to={"/"} />,
   },
   {
     path: "/profile",
@@ -49,6 +51,16 @@ export const router = createBrowserRouter([
   {
     path: "/admin",
     element: <DashboardAdmin />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/admin/login",
+    element: <GuestAuthGuard Element={<AdminLogin />} to={"/admin"} />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/admin/profile",
+    element: <AdminAuthGuard Element={<AdminProfile />} />,
     errorElement: <Error />,
   },
 ]);
