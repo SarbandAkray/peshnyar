@@ -1,6 +1,3 @@
-import axios from "axios";
-import { baseApiUrl } from "../../../global/api/api_url";
-import { decodeToken } from "react-jwt";
 import { userApiCall } from "../../../global/api/user_api_call";
 
 export const postcoment = async (
@@ -8,8 +5,10 @@ export const postcoment = async (
   token,
   navigate,
   setLoading,
-  handleClickOpen,
+  handleErrorClickOpen,
+  handleSuccessClickOpen,
   setErrorMessage,
+  setSuccessMessage,
   content_id,
   dispatch
 ) => {
@@ -21,16 +20,13 @@ export const postcoment = async (
     if (e.target.comment.value.toString().trim() == "") {
       setLoading(false);
       setErrorMessage("please enter a comment");
-      handleClickOpen();
+      handleErrorClickOpen();
     } else {
-      var user = await decodeToken(token.accessToken);
-
       var response = await userApiCall(
         "content/comment",
         {
           comment: e.target.comment.value.toString(),
           content_id: content_id.toString(),
-          user_id: user["id"],
         },
         {
           authorization: token.accessToken,
@@ -38,7 +34,13 @@ export const postcoment = async (
         token,
         dispatch
       );
-      console.log(response.data);
+      if (response.data?.success != null) {
+        setSuccessMessage("commented added successfully");
+        handleSuccessClickOpen();
+      } else {
+        setErrorMessage("unkown error happened please try again later");
+        handleErrorClickOpen();
+      }
       setLoading(false);
     }
   }

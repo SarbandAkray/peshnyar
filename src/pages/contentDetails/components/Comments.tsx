@@ -4,7 +4,7 @@ import { postcoment } from "../services/postcoment";
 import Comment from "./Comment";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { useState } from "react";
-import { ErrorDialog } from "../../login/components/Dialog";
+import { ErrorDialog, SuccessDialog } from "../../login/components/Dialog";
 import { useDispatch } from "react-redux";
 
 export default function Comments({
@@ -17,14 +17,25 @@ export default function Comments({
   content_id: any;
 }) {
   const [errorMessage, setErrorMessage] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [successMessage, setSuccessMessage] = useState(false);
+  const [errorOpen, setErrorOpen] = useState(false);
+  const [successOpen, setSuccessOpen] = useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  const handleErrorClickOpen = () => {
+    setErrorOpen(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleErrorClose = () => {
+    setErrorOpen(false);
+  };
+
+  const handleSuccessClickOpen = () => {
+    setSuccessOpen(true);
+  };
+
+  const handleSuccessClose = () => {
+    setSuccessOpen(false);
+    window.location.reload();
   };
 
   let navigate = useNavigate();
@@ -37,9 +48,14 @@ export default function Comments({
     <div>
       <section className="bg-gray-900 py-8 px-5 ">
         <ErrorDialog
-          open={open}
-          handleClose={handleClose}
+          open={errorOpen}
+          handleClose={handleErrorClose}
           errorMessage={errorMessage}
+        />
+        <SuccessDialog
+          open={successOpen}
+          handleClose={handleSuccessClose}
+          successText={successMessage}
         />
         <div className="mx-auto px-5 w-full">
           <form
@@ -50,8 +66,10 @@ export default function Comments({
                 token,
                 navigate,
                 setLoading,
-                handleClickOpen,
+                handleErrorClickOpen,
+                handleSuccessClickOpen,
                 setErrorMessage,
+                setSuccessMessage,
                 content_id,
                 dispatch
               )

@@ -39,3 +39,35 @@ export function ErrorDialog({ open, handleClose, errorMessage }) {
     </React.Fragment>
   );
 }
+
+export function SuccessDialog({ open, handleClose, successText }) {
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+  return (
+    <React.Fragment>
+      <Dialog
+        fullScreen={fullScreen}
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="responsive-dialog-title"
+      >
+        <DialogTitle id="responsive-dialog-title">{"Success"}</DialogTitle>
+        <DialogContent color="white">
+          <DialogContentText>{successText}</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={handleClose}
+            className="loadingButton"
+            variant="contained"
+            // className="bg-red"
+            color="success"
+          >
+            okay
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </React.Fragment>
+  );
+}
