@@ -50,7 +50,7 @@ export default function Nav({
   };
 
   return (
-    <div className="w-screen flex items-center justify-between px-10 min-h-[5rem] h-fit  bg-lightGray gap-5">
+    <div className="w-screen flex items-center justify-between px-10 min-h-[5rem] h-fit  bg-lightGray gap-5  ">
       {/* desktop nav */}
       <div className="flex  sm:flex-col md:flex-col lg:flex-row">
         <img

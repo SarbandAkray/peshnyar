@@ -2,6 +2,7 @@ import { SetStateAction, useState } from "react";
 import Nav from "../home/components/Nav";
 import Filters from "./components/Filters";
 import Content from "../home/components/Content";
+
 export default function Search() {
   const [search, setSearch] = useState("");
   const [contents, setContents] = useState([]);

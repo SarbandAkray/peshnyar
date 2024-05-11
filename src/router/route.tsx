@@ -50,12 +50,14 @@ export const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <DashboardAdmin />,
+    element: (
+      <AdminAuthGuard Element={<DashboardAdmin />} to={"/admin/login"} />
+    ),
     errorElement: <Error />,
   },
   {
     path: "/admin/login",
-    element: <GuestAuthGuard Element={<AdminLogin />} to={"/admin"} />,
+    element: <GuestAuthGuard Element={<AdminLogin />} to={"/"} />,
     errorElement: <Error />,
   },
   {
