@@ -10,6 +10,7 @@ import { baseBackendUrl } from "../../../global/api/api_url";
 import { useNavigate } from "react-router-dom";
 
 export default function Content({ content }: { content: Content }) {
+  console.log(content);
   const navigate = useNavigate();
   const ContentDetails = (content: Content) => {
     navigate(`/content/${content.id}`);

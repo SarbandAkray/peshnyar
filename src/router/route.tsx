@@ -13,6 +13,10 @@ import GuestAuthGuard from "./guestAuthGuard";
 import AdminLogin from "../admin/pages/login/Login";
 import AdminAuthGuard from "./adminAuthGuard";
 import AdminProfile from "../admin/pages/profile/Profile";
+import SuperAdminAuthGuard from "./superAdminAuthGuard";
+import DashboardSuperAdmin from "../superadmin/dashboard/DashboardAdmin";
+import SuperAdminLogin from "../superadmin/login/Login";
+import SuperAdminProfile from "../superadmin/profile/Profile";
 
 export const router = createBrowserRouter([
   {
@@ -63,6 +67,23 @@ export const router = createBrowserRouter([
   {
     path: "/admin/profile",
     element: <AdminAuthGuard Element={<AdminProfile />} />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/superadmin",
+    element: (
+      <SuperAdminAuthGuard Element={<DashboardSuperAdmin />} to={"/admin/login"} />
+    ),
+    errorElement: <Error />,
+  },
+  {
+    path: "/superadmin/login",
+    element: <GuestAuthGuard Element={<SuperAdminLogin />} to={"/"} />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/superadmin/profile",
+    element: <SuperAdminAuthGuard Element={<SuperAdminProfile />} />,
     errorElement: <Error />,
   },
 ]);
