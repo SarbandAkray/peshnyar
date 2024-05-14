@@ -17,6 +17,7 @@ import SuperAdminAuthGuard from "./superAdminAuthGuard";
 import DashboardSuperAdmin from "../superadmin/dashboard/DashboardAdmin";
 import SuperAdminLogin from "../superadmin/login/Login";
 import SuperAdminProfile from "../superadmin/profile/Profile";
+import Contents from "../admin/pages/contents/Contents";
 
 export const router = createBrowserRouter([
   {
@@ -60,6 +61,11 @@ export const router = createBrowserRouter([
     errorElement: <Error />,
   },
   {
+    path: "/admin/contents",
+    element: <AdminAuthGuard Element={<Contents />} to={"/admin/login"} />,
+    errorElement: <Error />,
+  },
+  {
     path: "/admin/login",
     element: <GuestAuthGuard Element={<AdminLogin />} to={"/"} />,
     errorElement: <Error />,
@@ -72,7 +78,10 @@ export const router = createBrowserRouter([
   {
     path: "/superadmin",
     element: (
-      <SuperAdminAuthGuard Element={<DashboardSuperAdmin />} to={"/admin/login"} />
+      <SuperAdminAuthGuard
+        Element={<DashboardSuperAdmin />}
+        to={"/admin/login"}
+      />
     ),
     errorElement: <Error />,
   },

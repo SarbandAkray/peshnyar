@@ -1,6 +1,6 @@
 import axios from "axios";
-import { baseApiUrl } from "../../../../global/api/api_url";
-import { updateUserInfo } from "../../../../redux/reducers/userReducer";
+import { baseApiUrl } from "../../../global/api/api_url";
+import { updateUserInfo } from "../../../redux/reducers/userReducer";
 
 export const signin = async (e, dispatch, handleClickOpen, setErrorMessage) => {
   e.preventDefault();
@@ -9,7 +9,7 @@ export const signin = async (e, dispatch, handleClickOpen, setErrorMessage) => {
     if (form.email.value == null || form.password.value == null) {
       alert("Please fill alll the fields");
     } else {
-      var response = await axios.post(`${baseApiUrl}admin/login`, {
+      var response = await axios.post(`${baseApiUrl}superadmin/login`, {
         email: form.email.value,
         password: form.password.value,
       });

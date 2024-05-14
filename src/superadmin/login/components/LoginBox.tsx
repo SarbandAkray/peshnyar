@@ -23,7 +23,7 @@ export default function LoginBox() {
         errorMessage={errorMessage}
       />
       <div className="w-[20rem] bg-lightGray rounded-t-md text-center p-3">
-        <h1 className="text-white">Login Admins only</h1>
+        <h1 className="text-white">Login Super Admins only</h1>
       </div>
       <form
         onSubmit={(e) => signin(e, dispatch, handleClickOpen, setErrorMessage)}

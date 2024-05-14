@@ -5,14 +5,18 @@ import {
   CardHeader,
   Typography,
 } from "@material-tailwind/react";
-import { Content } from "../../../globals";
-import { baseBackendUrl } from "../../../global/api/api_url";
+
+import {
+  baseApiImageUrl,
+  baseApiUrl,
+  baseBackendUrl,
+} from "../../../global/api/api_url";
 import { useNavigate } from "react-router-dom";
 
-export default function Content({ content }: { content: Content }) {
+export default function Content({ content }: { content }) {
   console.log(content);
   const navigate = useNavigate();
-  const ContentDetails = (content: Content) => {
+  const ContentDetails = (content) => {
     navigate(`/content/${content.id}`);
   };
 
@@ -28,7 +32,7 @@ export default function Content({ content }: { content: Content }) {
         placeholder={undefined}
       >
         <img
-          src={baseBackendUrl + content.img_url}
+          src={baseApiImageUrl + content.img_url}
           alt="card-image"
           className="w-full h-full object-cover"
         />
@@ -57,15 +61,25 @@ export default function Content({ content }: { content: Content }) {
           placeholder={"undefined"}
           variant="small"
         >
-          Genre: {content.contents_genre[0].genre.name}
+          Genre:{" "}
+          {content.contents_genre[0] == null
+            ? ""
+            : content.contents_genre[0].genre!.name}
         </Typography>
         <Typography
           className="font-bold p-0"
           placeholder={undefined}
           variant="small"
         >
-          Restriction: {content.general_age_group[0].age_bigger} yrs -{" "}
-          {content.general_age_group[0].age_smaller} yrs
+          Restriction:{" "}
+          {content.general_age_group[0] == null
+            ? ""
+            : content.general_age_group[0].age_bigger}{" "}
+          yrs -{" "}
+          {content.general_age_group[0] == null
+            ? ""
+            : content.general_age_group[0].age_smaller}{" "}
+          yrs
         </Typography>
       </CardBody>
       <div className="max-h-[0rem] overflow-auto sm:max-h-[100%] sm:overflow-hidden">

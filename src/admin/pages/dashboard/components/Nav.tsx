@@ -19,7 +19,11 @@ export default function Nav() {
           width={100}
           onClick={() => (window.location.href = "/admin")}
         />
-        <ul className="hidden gap-2  items-center justify-between text-white  lg:flex"></ul>
+        <ul className="hidden gap-2  items-center justify-between text-white  lg:flex ms-5">
+          <li className="uppercase text-sm">
+            <a href="/admin/contents">Contents</a>
+          </li>
+        </ul>
       </div>
 
       {/*  tablet and  desktop*/}

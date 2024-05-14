@@ -1,4 +1,8 @@
-import { baseBackendUrl } from "../../../global/api/api_url";
+import {
+  baseApiImageUrl,
+  baseApiUrl,
+  baseBackendUrl,
+} from "../../../global/api/api_url";
 import { Content } from "../../../globals";
 
 export default function HeaderPart({
@@ -14,7 +18,7 @@ export default function HeaderPart({
     <div className="  flex flex-col">
       <div className="flex  justify-center mt-10">
         <img
-          src={baseBackendUrl + img}
+          src={baseApiImageUrl + img}
           alt="Content Image"
           className="w-[20rem]"
         />
