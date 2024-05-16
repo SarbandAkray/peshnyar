@@ -8,7 +8,6 @@ import Content from "./components/Content";
 import { useTranslation } from "react-i18next";
 
 function Home() {
-  const { t, i18n } = useTranslation();
   const [search, setSearch] = useState("");
   const [categories, setCategories] = useState([]);
   const [searchedData, setSearchedData] = useState([]);

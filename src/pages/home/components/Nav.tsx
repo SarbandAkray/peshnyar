@@ -1,15 +1,8 @@
 import { useEffect, useState } from "react";
-import {
-  Menu,
-  MenuHandler,
-  MenuList,
-  MenuItem,
-  Button,
-} from "@material-tailwind/react";
+import { Menu, MenuList, MenuItem, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { baseApiUrl, baseBackendUrl } from "../../../global/api/api_url";
-import { useTranslation } from "react-i18next";
 import { User } from "../../../models/User";
 import { useSelector } from "react-redux";
 import { decodeToken } from "react-jwt";
@@ -21,12 +14,25 @@ export default function Nav({
   setSearch?: React.Dispatch<React.SetStateAction<string>>;
   isSearchAvailable?: boolean;
 }) {
-  const { t, i18n } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [isNavOpen, setIsNavOpen] = useState(false);
+
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   const [cats, setCats] = useState([]);
   const user: User = decodeToken(
-    useSelector((state: any) => state.user).user_session?.accessToken.toString()
+    useSelector((state: any) => state.user) != null
+      ? useSelector(
+          (state: any) => state.user
+        ).user_session?.accessToken.toString()
+      : "sdaf"
   );
 
   const navigate = useNavigate();
@@ -59,68 +65,58 @@ export default function Nav({
           width={100}
           onClick={() => (window.location.href = "/")}
         />
-        <ul className="hidden gap-2  items-center justify-between text-white  lg:flex">
+        <ul className="hidden gap-2  items-center  text-white  lg:flex">
           {/* categories */}
-          <li className="uppercase text-sm">
-            <Menu>
-              <MenuHandler>
-                <Button
-                  className="text-md font-thin focus:border-none"
-                  placeholder={undefined}
-                >
-                  Categories
-                </Button>
-              </MenuHandler>
-              <MenuList
-                className="text-md font-thin text-primaryColor"
-                placeholder={undefined}
-              >
-                {cats
-                  ? cats.map((cat) => {
-                      return (
-                        <MenuItem
-                          placeholder={undefined}
-                          key={cat.id}
-                          onClick={() => {
-                            navigate("/category/" + cat.id);
-                          }}
-                        >
-                          {cat.name}
-                        </MenuItem>
-                      );
-                    })
-                  : null}
-              </MenuList>
+          <div>
+            <Button
+              id="demo-positioned-button"
+              aria-controls={open ? "demo-positioned-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              onClick={handleClick}
+              style={{ color: "white", padding: "10px" }}
+            >
+              Categories
+            </Button>
+            <Menu
+              id="demo-positioned-menu"
+              aria-labelledby="demo-positioned-button"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+            >
+              {cats
+                ? cats.map((cat) => {
+                    console.log(cat);
+                    return (
+                      <MenuItem
+                        key={cat.id}
+                        onClick={() => {
+                          navigate("/category/" + cat.id);
+                        }}
+                      >
+                        {cat.name}
+                      </MenuItem>
+                    );
+                  })
+                : null}
             </Menu>
-          </li>
+          </div>
 
           {/* languages */}
-          <li className="uppercase text-sm">
-            <Menu>
-              {/* <MenuHandler>
-                <Button
-                  className="text-md font-thin focus:border-none"
-                  placeholder={undefined}
-                >
-                  Languages
-                </Button>
-              </MenuHandler> */}
-              <MenuList
-                className="text-md font-thin text-primaryColor"
-                placeholder={undefined}
-              >
-                <MenuItem placeholder={undefined} onClick={() => {}}>
-                  english
-                </MenuItem>
-                <MenuItem placeholder={undefined} onClick={() => {}}>
-                  arabic
-                </MenuItem>
-                <MenuItem placeholder={undefined} onClick={() => {}}>
-                  kurdish
-                </MenuItem>
+          {/* <li className="uppercase text-sm">
+            <Menu open={false}>
+              <Button className="text-md font-thin focus:border-none">
+                Languages
+              </Button>
+
+              <MenuList className="text-md font-thin text-primaryColor">
+                <MenuItem onClick={() => {}}>english</MenuItem>
+                <MenuItem onClick={() => {}}>arabic</MenuItem>
+                <MenuItem onClick={() => {}}>kurdish</MenuItem>
               </MenuList>
             </Menu>
-          </li>
+          </li> */}
 
           {/* search Engine */}
           <li className="uppercase text-sm">
@@ -227,24 +223,16 @@ export default function Nav({
               </div>
             </li>
             <li className="border-b border-gray-400 my-8 uppercase">
-              <Menu>
-                <MenuHandler>
-                  <Button
-                    className="text-md font-thin focus:border-none"
-                    placeholder={undefined}
-                  >
-                    Categories
-                  </Button>
-                </MenuHandler>
-                <MenuList
-                  className="text-md font-thin text-primaryColor"
-                  placeholder={undefined}
-                >
+              <Menu open={false}>
+                <Button className="text-md font-thin focus:border-none">
+                  Categories
+                </Button>
+
+                <MenuList className="text-md font-thin text-primaryColor">
                   {cats
                     ? cats.map((cat) => {
                         return (
                           <MenuItem
-                            placeholder={undefined}
                             key={cat.id}
                             onClick={() => {
                               navigate("/category/" + cat.id);

@@ -15,6 +15,7 @@ export const UserSlice = createSlice({
     },
     updateUserInfo: (state, action) => {
       state.user_session = action.payload;
+      location.reload();
     },
   },
 });

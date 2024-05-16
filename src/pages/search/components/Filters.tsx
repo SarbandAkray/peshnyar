@@ -1,11 +1,11 @@
 import { useRef, useState } from "react";
 import { baseApiUrl } from "../../../global/api/api_url";
 import axios from "axios";
-import { Button } from "@material-tailwind/react";
-import qs from "qs";
+
 import { Box, InputBase, Typography, alpha, styled } from "@mui/material";
 import SliderFilter from "./SliderFilter";
 import SearchIcon from "@mui/icons-material/Search";
+import { Button } from "@mui/base";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export default function ({
@@ -118,7 +118,6 @@ export default function ({
         onClick={() => {
           getFilteredData();
         }}
-        placeholder={undefined}
       >
         <p>Search</p>
       </Button>

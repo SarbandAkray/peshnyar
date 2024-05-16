@@ -1,4 +1,3 @@
-import { Route, createBrowserRouter, redirect } from "react-router-dom";
 import Home from "../pages/home/Home";
 import Error from "../pages/Error/Error";
 import Search from "../pages/search/Search";
@@ -18,6 +17,15 @@ import DashboardSuperAdmin from "../superadmin/dashboard/DashboardAdmin";
 import SuperAdminLogin from "../superadmin/login/Login";
 import SuperAdminProfile from "../superadmin/profile/Profile";
 import Contents from "../admin/pages/contents/Contents";
+import GeneralReview from "../admin/pages/GeneralReview/GeneralReview";
+import GiveGeneralReview from "../admin/pages/GeneralReview/GiverGeneralReview";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  useRouteError,
+} from "react-router-dom";
+
+// import { ThemeProvider } from "@material-tailwind/react";
 
 export const router = createBrowserRouter([
   {
@@ -63,6 +71,18 @@ export const router = createBrowserRouter([
   {
     path: "/admin/contents",
     element: <AdminAuthGuard Element={<Contents />} to={"/admin/login"} />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/admin/generalReview",
+    element: <AdminAuthGuard Element={<GeneralReview />} to={"/admin/login"} />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/admin/generalReview/:id",
+    element: (
+      <AdminAuthGuard Element={<GiveGeneralReview />} to={"/admin/login"} />
+    ),
     errorElement: <Error />,
   },
   {

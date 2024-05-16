@@ -4,14 +4,14 @@ import {
   baseApiImageUrl,
   baseApiUrl,
   baseBackendUrl,
-} from "../../../global/api/api_url";
+} from "../../../../global/api/api_url";
 import { useNavigate } from "react-router-dom";
 
 export default function Content({ content }: { content }) {
   console.log(content);
   const navigate = useNavigate();
   const ContentDetails = (content) => {
-    navigate(`/content/${content.id}`);
+    navigate(`/admin/generalReview/${content.id}`);
   };
 
   return (

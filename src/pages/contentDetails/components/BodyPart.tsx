@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Content } from "../../../globals";
-import { Collapse, TabPanel } from "@material-tailwind/react";
+import { Collapse } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 export default function BodyPart({
@@ -55,7 +55,7 @@ export default function BodyPart({
                 {rating.age_bigger} - {rating.age_smaller}
               </p>
             </div>
-            <Collapse open={arrayStates[index].is_open}>
+            <Collapse in={arrayStates[index].is_open}>
               <section>{rating.details}</section>
             </Collapse>
           </>

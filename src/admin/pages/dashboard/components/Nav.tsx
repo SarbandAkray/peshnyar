@@ -19,9 +19,12 @@ export default function Nav() {
           width={100}
           onClick={() => (window.location.href = "/admin")}
         />
-        <ul className="hidden gap-2  items-center justify-between text-white  lg:flex ms-5">
+        <ul className="hidden gap-10 items-center justify-between text-white  lg:flex ms-5">
           <li className="uppercase text-sm">
             <a href="/admin/contents">Contents</a>
+          </li>
+          <li className="uppercase text-sm">
+            <a href="/admin/generalReview">General Review</a>
           </li>
         </ul>
       </div>
@@ -83,6 +86,22 @@ export default function Nav() {
               >
                 <img src="/assets/home/user.svg" alt="" width={20} />
                 <p className="text-white">{"Admin Test"}</p>
+              </div>
+            </li>
+            <li className="border-b pb-1 border-gray-400 my-8 uppercase">
+              <div
+                className="flex gap-2 cursor-pointer  "
+                onClick={() => (window.location.href = "/admin/contents")}
+              >
+                <p className="text-white">{"Contents"}</p>
+              </div>
+            </li>
+            <li className="border-b pb-1 border-gray-400 my-8 uppercase">
+              <div
+                className="flex gap-2 cursor-pointer  "
+                onClick={() => (window.location.href = "/admin/generalreview")}
+              >
+                <p className="text-white">{"General Review"}</p>
               </div>
             </li>
           </ul>

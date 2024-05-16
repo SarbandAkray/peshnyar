@@ -1,12 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import { Content } from "../../../globals";
-import { postcoment } from "../services/postcoment";
+import { Content } from "../../../../globals";
+
 import Comment from "./Comment";
-// import LoadingButton from "@mui/lab/LoadingButton";
+import LoadingButton from "@mui/lab/LoadingButton";
 import { useState } from "react";
 import { ErrorDialog, SuccessDialog } from "../../login/components/Dialog";
 import { useDispatch } from "react-redux";
-import LoadingButton from "@mui/lab/LoadingButton";
 
 export default function Comments({
   token,
@@ -59,23 +58,7 @@ export default function Comments({
           successText={successMessage}
         />
         <div className="mx-auto px-5 w-full">
-          <form
-            className="mb-6 max-w-md"
-            onSubmit={async (e) =>
-              await postcoment(
-                e,
-                token,
-                navigate,
-                setLoading,
-                handleErrorClickOpen,
-                handleSuccessClickOpen,
-                setErrorMessage,
-                setSuccessMessage,
-                content_id,
-                dispatch
-              )
-            }
-          >
+          <form className="mb-6 max-w-md">
             <div className="py-2 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
               <label htmlFor="comment" className="sr-only">
                 Your comment
