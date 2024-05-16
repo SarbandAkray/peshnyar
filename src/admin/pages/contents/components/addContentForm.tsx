@@ -32,16 +32,13 @@ export default function AddContentForm() {
 
   const getListOfCategories = async () => {
     const data = await axios.get(baseApiUrl + "categories");
-    console.log(data.data);
 
     setListOfCategories(
       [...data.data].map((e) => ({ label: e.name, value: e.id }))
     );
   };
 
-  useEffect(() => {
-    console.log(listOfCategories);
-  }, [listOfCategories]);
+  useEffect(() => {}, [listOfCategories]);
 
   return (
     <div className="bg-white p-10 rounded-md">
@@ -71,8 +68,13 @@ export default function AddContentForm() {
         {listOfCategories.length == 0 ? null : (
           <Creatable
             options={listOfCategories}
-            className="text-black"
             name="category"
+            styles={{
+              option: (base) => ({
+                ...base,
+                color: "black",
+              }),
+            }}
           />
         )}
         <LoadingButton loading={loading} type="submit" variant="contained">
@@ -91,7 +93,7 @@ const addContent = async (
 ) => {
   e.preventDefault();
   setLoading(true);
-  console.log(e.target["ContentImage"].files[0]);
+
   const formData = new FormData();
   formData.append("file", e.target["ContentImage"].files[0]);
   formData.append("title", e.target["title"].value);

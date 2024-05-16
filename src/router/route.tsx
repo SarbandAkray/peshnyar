@@ -24,6 +24,10 @@ import {
   RouterProvider,
   useRouteError,
 } from "react-router-dom";
+import IslamicReview from "../admin/pages/IslamicReview/IslamicReview";
+import GiveIslamicReview from "../admin/pages/IslamicReview/GiveIslamicReview";
+import AgeRestriction from "../admin/pages/AgeRestriction/AgeRestriction";
+import GiveAgeRistriction from "../admin/pages/AgeRestriction/GiveAgeRestriction";
 
 // import { ThemeProvider } from "@material-tailwind/react";
 
@@ -71,6 +75,32 @@ export const router = createBrowserRouter([
   {
     path: "/admin/contents",
     element: <AdminAuthGuard Element={<Contents />} to={"/admin/login"} />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/admin/islamic_review",
+    element: <AdminAuthGuard Element={<IslamicReview />} to={"/admin/login"} />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/admin/islamic_review/:id",
+    element: (
+      <AdminAuthGuard Element={<GiveIslamicReview />} to={"/admin/login"} />
+    ),
+    errorElement: <Error />,
+  },
+  {
+    path: "/admin/age_ristriction",
+    element: (
+      <AdminAuthGuard Element={<AgeRestriction />} to={"/admin/login"} />
+    ),
+    errorElement: <Error />,
+  },
+  {
+    path: "/admin/age_ristriction/:id",
+    element: (
+      <AdminAuthGuard Element={<GiveAgeRistriction />} to={"/admin/login"} />
+    ),
     errorElement: <Error />,
   },
   {

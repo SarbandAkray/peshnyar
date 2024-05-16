@@ -19,7 +19,7 @@ export default function GeneralReview() {
         Accept: "application/json",
       },
     });
-    console.log(data.data);
+
     setContents(data.data);
   };
   return (

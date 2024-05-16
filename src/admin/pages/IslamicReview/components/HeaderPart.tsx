@@ -1,16 +1,15 @@
-import {
-  baseApiImageUrl,
-  baseApiUrl,
-  baseBackendUrl,
-} from "../../../global/api/api_url";
-import { Content } from "../../../globals";
+import { TextareaAutosize } from "@mui/material";
+import { baseApiImageUrl } from "../../../../global/api/api_url";
+import { Content } from "../../../../globals";
 
 export default function HeaderPart({
   title,
   img,
+  details,
 }: {
   title: Content["title"];
   img: Content["img_url"];
+  details: Content["details"];
 }) {
   return (
     <div className="  flex flex-col">

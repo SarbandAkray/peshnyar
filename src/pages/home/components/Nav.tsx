@@ -87,7 +87,6 @@ export default function Nav({
             >
               {cats
                 ? cats.map((cat) => {
-                    console.log(cat);
                     return (
                       <MenuItem
                         key={cat.id}

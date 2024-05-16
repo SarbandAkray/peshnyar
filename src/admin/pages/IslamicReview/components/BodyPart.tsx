@@ -1,4 +1,6 @@
 import { FormEvent, useEffect, useState } from "react";
+import { Content } from "../../../../globals";
+
 import { TextareaAutosize } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import Creatable from "react-select/creatable";
@@ -7,6 +9,8 @@ import { baseApiUrl } from "../../../../global/api/api_url";
 import { AdminApiCall } from "../../../../global/api/admin_api_call";
 import { useDispatch } from "react-redux";
 import { ErrorDialog, SuccessDialog } from "../../login/components/Dialog";
+import { Button } from "@mui/base";
+import WordPopUpDialog from "./wordPopUpDialog";
 
 export default function BodyPart({ tokens, id }) {
   const [errorMessage, setErrorMessage] = useState(false);
@@ -31,36 +35,29 @@ export default function BodyPart({ tokens, id }) {
     window.location.href = "/admin/generalReview";
   };
 
-  useEffect(() => {
-    getAllGenres();
-  }, []);
-
-  const getAllGenres = async () => {
-    const result = await axios.get(baseApiUrl + "content/genres");
-    setListOfGeneres(
-      [...result.data].map((e) => ({ label: e.name, value: e.id }))
-    );
-  };
-
   const [loading, setLoading] = useState(false);
-  const [listOfGeneres, setListOfGeneres] = useState([]);
+  const [islamicReview, setIslamicReview] = useState([]);
+  const [islamicExplenation, setIslamicExplenation] = useState([]);
+  const [index, setIndex] = useState(0);
+  const [text, setText] = useState("");
 
   const [value, setValue] = useState([]);
   const dispatch = useDispatch();
 
-  async function submitGeneralReview(e: FormEvent<HTMLFormElement>) {
+  async function submitIslamicReview(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
     setLoading(true);
     var body = {
-      details: e.target["details"].value,
-      generes: value,
+      islamic_review: e.target["islamic_review"].value,
+      islamicExplenation: islamicExplenation,
       id: id,
     };
 
     var headers = {};
 
     const data = await AdminApiCall(
-      "contents/general_review",
+      "contents/islamic_review",
       body,
       headers,
       tokens,
@@ -77,6 +74,16 @@ export default function BodyPart({ tokens, id }) {
     setLoading(false);
   }
 
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div className="px-[2.5rem] pb-5 text-white gap-4">
       <div className="flex my-5 flex-col gap-4  items-center justify-center">
@@ -91,42 +98,53 @@ export default function BodyPart({ tokens, id }) {
           successText={successMessage}
         />
         <form
-          onSubmit={(e) => submitGeneralReview(e)}
+          onSubmit={(e) => submitIslamicReview(e)}
           className="flex flex-col gap-4"
         >
           <h5 className="">Add details</h5>
           <div>
             <TextareaAutosize
               className="text-black p-5"
+              style={{ color: "black" }}
               cols={50}
               minRows={10}
-              style={{
-                color: "black",
-              }}
               placeholder="General review of the content"
-              name="details"
+              name="islamic_review"
+              onChange={(e) => {
+                setIslamicReview(e.target.value.split(" "));
+              }}
             />
           </div>
 
-          <h1>add Generes</h1>
+          <h1>add Islamic explination to words:</h1>
+          <div className="max-w-[20rem] flex flex-wrap gap-1">
+            {islamicReview.length == 0
+              ? null
+              : islamicReview.map((e, index) => {
+                  return (
+                    <Button
+                      onClick={() => {
+                        setIndex(index);
+                        setText(e);
+                        setOpen(true);
+                      }}
+                    >
+                      {e}
+                    </Button>
+                  );
+                })}
+          </div>
+          <WordPopUpDialog
+            handleClose={handleClose}
+            open={open}
+            index={index}
+            value={text}
+            islamicExplenation={islamicExplenation}
+            setIslamicExplenation={setIslamicExplenation}
+          />
 
-          {listOfGeneres.length == 0 ? null : (
-            <Creatable
-              options={listOfGeneres}
-              className="text-black"
-              name="generes"
-              onChange={(newValue) => setValue([...newValue])}
-              isMulti={true}
-              styles={{
-                option: (base) => ({
-                  ...base,
-                  color: "black",
-                }),
-              }}
-            />
-          )}
           <LoadingButton loading={loading} type="submit" variant="contained">
-            Add Content Review
+            Add Content Islamic Review
           </LoadingButton>
         </form>
       </div>

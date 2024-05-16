@@ -11,19 +11,13 @@ export default function Contents({ id }: { id: string }) {
 
   const getContents = async () => {
     const result = await axios.get(baseApiUrl + "contents/category?id=" + id);
-    console.log(result);
+
     setContents(result.data.slice(0, 5));
   };
 
   return contents
     ? contents.map((content) => {
-        console.log(content);
-        return (
-          <div key={content.id}>{
-            
-            <Content content={content} /> 
-            }</div>
-        );
+        return <div key={content.id}>{<Content content={content} />}</div>;
       })
     : null;
 }

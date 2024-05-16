@@ -6,15 +6,15 @@ import Content from "./components/Content";
 import axios from "axios";
 import { baseApiUrl } from "../../../global/api/api_url";
 
-export default function IslamicReview() {
+export default function AgeRestriction() {
   const [contents, setContents] = useState([]);
   useEffect(() => {
-    getAllContentForIslamicReview();
+    getAllContentForGeneralReview();
   }, []);
   var token = useSelector((state: any) => state.user.user_session);
   var dispatch = useDispatch();
-  const getAllContentForIslamicReview = async () => {
-    const data = await axios.get(baseApiUrl + "contents/islamic_review", {
+  const getAllContentForGeneralReview = async () => {
+    const data = await axios.get(baseApiUrl + "contents/age_ristriction", {
       headers: {
         Accept: "application/json",
       },

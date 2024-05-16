@@ -27,7 +27,7 @@ function Home() {
     const result = await axios.get(
       baseApiUrl + "contents/search?title=" + search
     );
-    console.log(result.data);
+    result.data;
     setSearchedData(result.data);
   };
 

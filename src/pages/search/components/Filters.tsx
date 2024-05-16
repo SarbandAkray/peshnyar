@@ -50,7 +50,6 @@ export default function ({
         ageRestrictions: data,
       }
     );
-    console.log(result);
 
     setContents(result.data);
   };

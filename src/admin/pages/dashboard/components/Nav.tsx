@@ -26,6 +26,12 @@ export default function Nav() {
           <li className="uppercase text-sm">
             <a href="/admin/generalReview">General Review</a>
           </li>
+          <li className="uppercase text-sm">
+            <a href="/admin/islamic_review">Islamic Review</a>
+          </li>
+          <li className="uppercase text-sm">
+            <a href="/admin/age_ristriction">Age Restriction</a>
+          </li>
         </ul>
       </div>
 
