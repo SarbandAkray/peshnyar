@@ -21,6 +21,9 @@ export default function Nav() {
         />
         <ul className="hidden gap-10 items-center justify-between text-white  lg:flex ms-5">
           <li className="uppercase text-sm">
+            <a href="/">Users Page</a>
+          </li>
+          <li className="uppercase text-sm">
             <a href="/admin/contents">Contents</a>
           </li>
           <li className="uppercase text-sm">
@@ -97,6 +100,14 @@ export default function Nav() {
             <li className="border-b pb-1 border-gray-400 my-8 uppercase">
               <div
                 className="flex gap-2 cursor-pointer  "
+                onClick={() => (window.location.href = "/")}
+              >
+                <p className="text-white">{"Users Page"}</p>
+              </div>
+            </li>
+            <li className="border-b pb-1 border-gray-400 my-8 uppercase">
+              <div
+                className="flex gap-2 cursor-pointer  "
                 onClick={() => (window.location.href = "/admin/contents")}
               >
                 <p className="text-white">{"Contents"}</p>
@@ -108,6 +119,25 @@ export default function Nav() {
                 onClick={() => (window.location.href = "/admin/generalreview")}
               >
                 <p className="text-white">{"General Review"}</p>
+              </div>
+            </li>
+
+            <li className="border-b pb-1 border-gray-400 my-8 uppercase">
+              <div
+                className="flex gap-2 cursor-pointer  "
+                onClick={() => (window.location.href = "/admin/islamic_review")}
+              >
+                <p className="text-white">{"Islamic Review"}</p>
+              </div>
+            </li>
+            <li className="border-b pb-1 border-gray-400 my-8 uppercase">
+              <div
+                className="flex gap-2 cursor-pointer  "
+                onClick={() =>
+                  (window.location.href = "/admin/age_ristriction")
+                }
+              >
+                <p className="text-white">{"Age Restriction"}</p>
               </div>
             </li>
           </ul>

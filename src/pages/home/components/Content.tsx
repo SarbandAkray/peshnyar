@@ -1,11 +1,10 @@
-import { Card, CardHeader, CardMedia, Typography } from "@mui/material";
+import { Card, CardMedia, Typography } from "@mui/material";
 
-import {
-  baseApiImageUrl,
-  baseApiUrl,
-  baseBackendUrl,
-} from "../../../global/api/api_url";
+import { baseApiImageUrl } from "../../../global/api/api_url";
 import { useNavigate } from "react-router-dom";
+import { decodeToken } from "react-jwt";
+import { useSelector } from "react-redux";
+import { User } from "../../../models/User";
 
 export default function Content({ content }: { content }) {
   content;
@@ -13,10 +12,13 @@ export default function Content({ content }: { content }) {
   const ContentDetails = (content) => {
     navigate(`/content/${content.id}`);
   };
+  const user: User = decodeToken(
+    useSelector((state: any) => state.user).user_session?.accessToken.toString()
+  );
 
   return (
     <Card
-      className="mt-6 mb-4 w-[11em] h-[22em]  sm:w-[20em] sm:h-[33em] "
+      className="mt-6 mb-4 w-[11em] h-[22em]  sm:w-[20em] sm:h-[33em]  overflow-auto relative z-0"
       onClick={() => ContentDetails(content)}
     >
       <CardMedia

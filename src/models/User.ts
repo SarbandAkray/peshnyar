@@ -6,4 +6,5 @@ export type User = {
   img_url: String;
   created_at: Date;
   updated_at: Date;
+  auth: string;
 };

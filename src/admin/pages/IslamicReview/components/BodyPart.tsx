@@ -32,7 +32,7 @@ export default function BodyPart({ tokens, id }) {
 
   const handleSuccessClose = () => {
     setSuccessOpen(false);
-    window.location.href = "/admin/generalReview";
+    window.location.href = "/admin/islamic_review";
   };
 
   const [loading, setLoading] = useState(false);

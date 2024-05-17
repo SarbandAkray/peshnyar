@@ -1,5 +1,5 @@
 import { Content } from "../../../globals";
-import { baseBackendUrl } from "../../../global/api/api_url";
+import { baseApiImageUrl, baseBackendUrl } from "../../../global/api/api_url";
 
 export default function Comment({
   comment,
@@ -43,7 +43,7 @@ export default function Comment({
           <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
             <img
               className="mr-2 w-6 h-6 rounded-full"
-              src={baseBackendUrl + comment.users.img_url}
+              src={baseApiImageUrl + comment.users.img_url}
               alt="Bonnie Green"
             />
             {comment.users.name}

@@ -28,11 +28,7 @@ export default function Nav({
 
   const [cats, setCats] = useState([]);
   const user: User = decodeToken(
-    useSelector((state: any) => state.user) != null
-      ? useSelector(
-          (state: any) => state.user
-        ).user_session?.accessToken.toString()
-      : "sdaf"
+    useSelector((state: any) => state.user).user_session?.accessToken.toString()
   );
 
   const navigate = useNavigate();
@@ -65,7 +61,13 @@ export default function Nav({
           width={100}
           onClick={() => (window.location.href = "/")}
         />
-        <ul className="hidden gap-2  items-center  text-white  lg:flex">
+        <ul className="hidden gap-2  items-center  text-white  lg:flex ms-5">
+          {user != null && user["auth"] == "admin" && (
+            <li className="uppercase text-sm">
+              <a href="/admin">Admin Page</a>
+            </li>
+          )}
+
           {/* categories */}
           <div>
             <Button

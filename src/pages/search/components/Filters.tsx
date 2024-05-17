@@ -5,7 +5,7 @@ import axios from "axios";
 import { Box, InputBase, Typography, alpha, styled } from "@mui/material";
 import SliderFilter from "./SliderFilter";
 import SearchIcon from "@mui/icons-material/Search";
-import { Button } from "@mui/base";
+import { Button } from "@mui/material";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export default function ({
@@ -117,8 +117,9 @@ export default function ({
         onClick={() => {
           getFilteredData();
         }}
+        variant="contained"
       >
-        <p>Search</p>
+        Search
       </Button>
     </div>
   );

@@ -4,7 +4,7 @@ import { decodeToken } from "react-jwt";
 import { useDispatch, useSelector } from "react-redux";
 import { User } from "../../models/User";
 import CircularProgress from "@mui/material/CircularProgress";
-import { baseBackendUrl } from "../../global/api/api_url";
+import { baseApiImageUrl, baseBackendUrl } from "../../global/api/api_url";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { updateUserInfo } from "../../redux/reducers/userReducer";
 
@@ -28,7 +28,7 @@ export default function Profile() {
             <>
               <div className="w-52 h-52 p-2 bg-white rounded-full relative">
                 <img
-                  src={baseBackendUrl + user.img_url.toString()}
+                  src={baseApiImageUrl + user.img_url.toString()}
                   className="object-cover"
                 />
               </div>
