@@ -12,7 +12,7 @@ import { ErrorDialog, SuccessDialog } from "../../login/components/Dialog";
 import { Button } from "@mui/base";
 import WordPopUpDialog from "./wordPopUpDialog";
 
-export default function BodyPart({ tokens, id }) {
+export default function BodyPart({ tokens, id, content }) {
   const [errorMessage, setErrorMessage] = useState(false);
   const [successMessage, setSuccessMessage] = useState(false);
   const [errorOpen, setErrorOpen] = useState(false);
@@ -36,11 +36,14 @@ export default function BodyPart({ tokens, id }) {
   };
 
   const [loading, setLoading] = useState(false);
-  const [islamicReview, setIslamicReview] = useState([]);
-  const [islamicExplenation, setIslamicExplenation] = useState([]);
+  const [islamicReview, setIslamicReview] = useState(
+    content["islamicReview"].split(" ")
+  );
+  const [islamicExplenation, setIslamicExplenation] = useState(
+    content["islamicReviewMeaning"]
+  );
   const [index, setIndex] = useState(0);
   const [text, setText] = useState("");
-
   const [value, setValue] = useState([]);
   const dispatch = useDispatch();
 
@@ -113,6 +116,7 @@ export default function BodyPart({ tokens, id }) {
               onChange={(e) => {
                 setIslamicReview(e.target.value.split(" "));
               }}
+              defaultValue={content["islamicReview"]}
             />
           </div>
 

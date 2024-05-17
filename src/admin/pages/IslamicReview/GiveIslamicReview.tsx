@@ -32,7 +32,7 @@ export default function GiveIslamicReview() {
             img={content.img_url}
             details={content.details}
           />
-          <BodyPart tokens={"token"} id={id} />
+          <BodyPart tokens={"token"} id={id} content={content} />
         </>
       ) : null}
     </div>

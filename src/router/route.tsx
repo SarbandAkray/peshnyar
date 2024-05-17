@@ -28,6 +28,7 @@ import IslamicReview from "../admin/pages/IslamicReview/IslamicReview";
 import GiveIslamicReview from "../admin/pages/IslamicReview/GiveIslamicReview";
 import AgeRestriction from "../admin/pages/AgeRestriction/AgeRestriction";
 import GiveAgeRistriction from "../admin/pages/AgeRestriction/GiveAgeRestriction";
+import ContentsUpdate from "../admin/pages/contents/contentsUpdate";
 
 // import { ThemeProvider } from "@material-tailwind/react";
 
@@ -75,6 +76,13 @@ export const router = createBrowserRouter([
   {
     path: "/admin/contents",
     element: <AdminAuthGuard Element={<Contents />} to={"/admin/login"} />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/admin/contents/:id",
+    element: (
+      <AdminAuthGuard Element={<ContentsUpdate />} to={"/admin/login"} />
+    ),
     errorElement: <Error />,
   },
   {

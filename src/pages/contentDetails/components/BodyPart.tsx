@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import { Content } from "../../../globals";
-import { Collapse } from "@mui/material";
+import { Button, Collapse } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { User } from "../../../models/User";
 export default function BodyPart({
   ratings,
   genres,
+  user,
+  content,
 }: {
   ratings: Content["age_group_specification"];
   genres: Content["contents_genre"];
+  user: User;
+  content: any;
 }) {
   const [rating_open, set_rating_open] = useState(false);
   const [arrayStates, setArrayStates] = useState(() =>
@@ -31,12 +36,22 @@ export default function BodyPart({
       <div className="flex mb-5">
         <h1>{genres.length == 1 ? "genre: " : "genres: "}</h1>
         {genres.map((rating) => {
-          return <h1>{rating.genre.name} </h1>;
+          return <h1>{rating.genre.name}, </h1>;
         })}
-        <h1>{genres.length == 1 ? "" : ", "}</h1>
       </div>
+      {user != null && user.auth == "admin" && (
+        <Button
+          variant="contained"
+          color="warning"
+          onClick={() => {
+            location.href = "/admin/generalReview/" + content.id;
+          }}
+        >
+          edit
+        </Button>
+      )}
 
-      <h1>Restrictions:</h1>
+      <h1 className="mt-10">Restrictions:</h1>
 
       {ratings.map((rating, index) => {
         return (
@@ -61,6 +76,18 @@ export default function BodyPart({
           </>
         );
       })}
+
+      {user != null && user.auth == "admin" && (
+        <Button
+          variant="contained"
+          color="warning"
+          onClick={() => {
+            location.href = "/admin/age_ristriction/" + content.id;
+          }}
+        >
+          edit
+        </Button>
+      )}
     </div>
   );
 }

@@ -8,7 +8,7 @@ import { AdminApiCall } from "../../../../global/api/admin_api_call";
 import { useDispatch } from "react-redux";
 import { ErrorDialog, SuccessDialog } from "../../login/components/Dialog";
 
-export default function BodyPart({ tokens, id }) {
+export default function BodyPart({ tokens, id, content }) {
   const [errorMessage, setErrorMessage] = useState(false);
   const [successMessage, setSuccessMessage] = useState(false);
   const [errorOpen, setErrorOpen] = useState(false);
@@ -43,9 +43,16 @@ export default function BodyPart({ tokens, id }) {
   };
 
   const [loading, setLoading] = useState(false);
+
   const [listOfGeneres, setListOfGeneres] = useState([]);
 
-  const [value, setValue] = useState([]);
+  const [value, setValue] = useState([
+    ...content["contents_genre"].map((e) => ({
+      label: e.genre.name,
+      value: e.genre.id,
+    })),
+  ]);
+
   const dispatch = useDispatch();
 
   async function submitGeneralReview(e: FormEvent<HTMLFormElement>) {
@@ -104,6 +111,7 @@ export default function BodyPart({ tokens, id }) {
                 color: "black",
               }}
               placeholder="General review of the content"
+              defaultValue={content["details"]}
               name="details"
             />
           </div>
@@ -116,6 +124,7 @@ export default function BodyPart({ tokens, id }) {
               className="text-black"
               name="generes"
               onChange={(newValue) => setValue([...newValue])}
+              value={value}
               isMulti={true}
               styles={{
                 option: (base) => ({
