@@ -12,17 +12,26 @@ export default function HeaderPart({
   img,
   user,
   content,
+  handleClickOpen,
 }: {
   title: Content["title"];
   img: Content["img_url"];
   user: User;
   content: any;
+  handleClickOpen: any;
 }) {
   return (
     <div className="  flex flex-col">
       <div className="flex  justify-center mt-5 text-white">
         {user != null && user.auth == "admin" && (
-          <Button variant="contained" color="error" className="w-28">
+          <Button
+            variant="contained"
+            color="error"
+            className="w-28"
+            onClick={() => {
+              handleClickOpen();
+            }}
+          >
             Delete
           </Button>
         )}

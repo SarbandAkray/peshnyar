@@ -43,7 +43,10 @@ export default function WordPopUpDialog({
           <Button onClick={handleClose}>Cancel</Button>
           <Button
             onClick={() => {
-              var isin = islamicExplenation.some((item) => item.id === index);
+              var isin =
+                islamicExplenation != null
+                  ? islamicExplenation.some((item) => item.id === index)
+                  : false;
               if (isin) {
                 setIslamicExplenation((islamicExplenation) =>
                   islamicExplenation.map((item) =>

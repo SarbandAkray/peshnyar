@@ -37,10 +37,12 @@ export default function BodyPart({ tokens, id, content }) {
 
   const [loading, setLoading] = useState(false);
   const [islamicReview, setIslamicReview] = useState(
-    content["islamicReview"].split(" ")
+    content["islamicReview"] != null ? content["islamicReview"]!.split(" ") : ""
   );
   const [islamicExplenation, setIslamicExplenation] = useState(
-    content["islamicReviewMeaning"]
+    content["islamicReviewMeaning"] == null
+      ? []
+      : content["islamicReviewMeaning"]
   );
   const [index, setIndex] = useState(0);
   const [text, setText] = useState("");

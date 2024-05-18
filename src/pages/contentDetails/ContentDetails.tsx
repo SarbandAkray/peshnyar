@@ -12,7 +12,7 @@ import { Button as Button1 } from "@mui/base";
 import { Tooltip, Typography } from "@mui/material";
 import { User } from "../../models/User";
 import { decodeToken } from "react-jwt";
-import EditPopUpDialog from "./components/EditPopUpDialog";
+import DeletePopUpDialog from "./components/DeletePopUpDialog";
 
 export default function ContentDetails() {
   const [content, setContent]: [Content, Dispatch<any>] = useState(null);
@@ -54,12 +54,12 @@ export default function ContentDetails() {
             img={content.img_url}
             user={user}
             content={content}
+            handleClickOpen={handleClickOpen}
           />
-          <EditPopUpDialog
+          <DeletePopUpDialog
             id={content.id}
             open={open}
             handleClose={handleClose}
-            part={part}
           />
           <div className="flex flex-col justify-center mt-5 text-white px-10 py-4 gap-4">
             <div>

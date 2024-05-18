@@ -17,16 +17,26 @@ export default function Nav() {
           src="/assets/home/logo.svg"
           alt=""
           width={100}
-          onClick={() => (window.location.href = "/admin")}
+          onClick={() => (window.location.href = "/superadmin")}
         />
-        <ul className="hidden gap-2  items-center justify-between text-white  lg:flex"></ul>
+        <ul className="hidden gap-10 items-center justify-between text-white  lg:flex ms-5">
+          <li className="uppercase text-sm">
+            <a href="/">Users Page</a>
+          </li>
+        </ul>
+
+        <ul className="hidden gap-10 items-center justify-between text-white  lg:flex ms-5">
+          <li className="uppercase text-sm">
+            <a href="/superadmin/admins">Manage Admins</a>
+          </li>
+        </ul>
       </div>
 
       {/*  tablet and  desktop*/}
       <div className="lg:flex hidden gap-3  text-sm">
         <div
           className="flex gap-2 cursor-pointer items-center"
-          onClick={() => (window.location.href = "/admin/profile")}
+          onClick={() => (window.location.href = "/superadmin/profile")}
         >
           <img src="/assets/home/user.svg" alt="" width={20} />
           <p className="text-white">{"Admin Test"}</p>
@@ -68,17 +78,17 @@ export default function Nav() {
                 src="/assets/home/logo.svg"
                 alt=""
                 width={200}
-                onClick={() => (window.location.href = "/admin")}
+                onClick={() => (window.location.href = "/superadmin")}
               />
             </div>
 
             <li className="border-b pb-1 border-gray-400 my-8 uppercase">
               <div
                 className="flex gap-2 cursor-pointer  "
-                onClick={() => (window.location.href = "/admin/profile")}
+                onClick={() => (window.location.href = "/superadmin/profile")}
               >
                 <img src="/assets/home/user.svg" alt="" width={20} />
-                <p className="text-white">{"Admin Test"}</p>
+                <p className="text-white">{"Super Admin Test"}</p>
               </div>
             </li>
           </ul>

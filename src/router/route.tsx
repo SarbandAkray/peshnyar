@@ -13,7 +13,7 @@ import AdminLogin from "../admin/pages/login/Login";
 import AdminAuthGuard from "./adminAuthGuard";
 import AdminProfile from "../admin/pages/profile/Profile";
 import SuperAdminAuthGuard from "./superAdminAuthGuard";
-import DashboardSuperAdmin from "../superadmin/dashboard/DashboardAdmin";
+import DashboardSuperAdmin from "../superadmin/dashboard/DashboardSuperAdmin";
 import SuperAdminLogin from "../superadmin/login/Login";
 import SuperAdminProfile from "../superadmin/profile/Profile";
 import Contents from "../admin/pages/contents/Contents";
@@ -29,6 +29,8 @@ import GiveIslamicReview from "../admin/pages/IslamicReview/GiveIslamicReview";
 import AgeRestriction from "../admin/pages/AgeRestriction/AgeRestriction";
 import GiveAgeRistriction from "../admin/pages/AgeRestriction/GiveAgeRestriction";
 import ContentsUpdate from "../admin/pages/contents/contentsUpdate";
+import Admins from "../superadmin/admins/Admins";
+import AddAdmins from "../superadmin/admins/addAdmins";
 
 // import { ThemeProvider } from "@material-tailwind/react";
 
@@ -151,6 +153,16 @@ export const router = createBrowserRouter([
   {
     path: "/superadmin/profile",
     element: <SuperAdminAuthGuard Element={<SuperAdminProfile />} />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/superadmin/admins",
+    element: <SuperAdminAuthGuard Element={<Admins />} />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/superadmin/admin/create",
+    element: <SuperAdminAuthGuard Element={<AddAdmins />} />,
     errorElement: <Error />,
   },
 ]);

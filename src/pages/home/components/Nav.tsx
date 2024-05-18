@@ -68,6 +68,12 @@ export default function Nav({
             </li>
           )}
 
+          {user != null && user["auth"] == "superAdmin" && (
+            <li className="uppercase text-sm">
+              <a href="/superadmin">Super Admin Page</a>
+            </li>
+          )}
+
           {/* categories */}
           <div>
             <Button
