@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Nav from "../dashboard/components/Nav";
-import { Button } from "@mui/material";
+import {
+  Button,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@mui/material";
 import { AdminApiCall } from "../../global/api/admin_api_call";
 import { SuperAdminApiCall } from "../../global/api/super_admin_api_call";
 import { useSelector } from "react-redux";
@@ -25,7 +34,6 @@ export default function Admins() {
       token,
       dispatch
     );
-
     setAdmins(admins.data);
   };
 
@@ -43,7 +51,60 @@ export default function Admins() {
           >
             Add Admin
           </Button>
-          {admins.length > 0 && admins.map((e) => <p>{e.name}</p>)}
+          <TableContainer
+            component={Paper}
+            sx={{ maxWidth: "50vw", marginTop: "10vh" }}
+          >
+            <Table
+              sx={{ minWidth: 650 }}
+              size="small"
+              aria-label="a dense table"
+            >
+              <TableHead>
+                <TableRow>
+                  <TableCell>Admins</TableCell>
+                  <TableCell align="center">name</TableCell>
+                  <TableCell align="center">Email</TableCell>
+                  <TableCell align="center">Privlages</TableCell>
+                  <TableCell align="center">Action</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {admins.length > 0 &&
+                  admins.map((e) => (
+                    <TableRow
+                      key={e.name}
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                      <TableCell component="th" scope="row">
+                        {e.name}
+                      </TableCell>
+                      <TableCell align="center"> {e.name}</TableCell>
+                      <TableCell align="center"> {e.email}</TableCell>
+                      <TableCell align="center"> {e.privlages}</TableCell>
+                      <TableCell align="center">
+                        {" "}
+                        <div className="flex flex-col gap-2">
+                          <Button
+                            variant="contained"
+                            color="warning"
+                            onClick={() =>
+                              (location.href = `/superadmin/admin/${e.id}`)
+                            }
+                          >
+                            {" "}
+                            edit
+                          </Button>
+                          <Button variant="contained" color="error">
+                            delete
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
         </div>
       </div>
     </div>

@@ -31,6 +31,7 @@ import GiveAgeRistriction from "../admin/pages/AgeRestriction/GiveAgeRestriction
 import ContentsUpdate from "../admin/pages/contents/contentsUpdate";
 import Admins from "../superadmin/admins/Admins";
 import AddAdmins from "../superadmin/admins/addAdmins";
+import EditAdmins from "../superadmin/admins/EditAdmins";
 
 // import { ThemeProvider } from "@material-tailwind/react";
 
@@ -163,6 +164,11 @@ export const router = createBrowserRouter([
   {
     path: "/superadmin/admin/create",
     element: <SuperAdminAuthGuard Element={<AddAdmins />} />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/superadmin/admin/:id",
+    element: <SuperAdminAuthGuard Element={<EditAdmins />} />,
     errorElement: <Error />,
   },
 ]);
