@@ -14,6 +14,7 @@ import { AdminApiCall } from "../../global/api/admin_api_call";
 import { SuperAdminApiCall } from "../../global/api/super_admin_api_call";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 
 export default function Admins() {
   var token = useSelector((state: any) => state.user.user_session);
@@ -95,7 +96,20 @@ export default function Admins() {
                             {" "}
                             edit
                           </Button>
-                          <Button variant="contained" color="error">
+                          <Button
+                            variant="contained"
+                            color="error"
+                            onClick={async () => {
+                              await SuperAdminApiCall(
+                                "superadmin/admin/delete",
+                                { id: e.id },
+                                { authorization: token.accessToken },
+                                token,
+                                dispatch
+                              );
+                              location.href = `/superadmin/admins`;
+                            }}
+                          >
                             delete
                           </Button>
                         </div>
