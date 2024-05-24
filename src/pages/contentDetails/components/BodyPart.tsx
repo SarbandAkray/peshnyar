@@ -39,17 +39,19 @@ export default function BodyPart({
           return <h1>{rating.genre.name}, </h1>;
         })}
       </div>
-      {user != null && user.auth == "admin" && (
-        <Button
-          variant="contained"
-          color="warning"
-          onClick={() => {
-            location.href = "/admin/generalReview/" + content.id;
-          }}
-        >
-          edit
-        </Button>
-      )}
+      {user != null &&
+        user.auth == "admin" &&
+        user["privlages"].includes("Editing Content") && (
+          <Button
+            variant="contained"
+            color="warning"
+            onClick={() => {
+              location.href = "/admin/generalReview/" + content.id;
+            }}
+          >
+            edit
+          </Button>
+        )}
 
       <h1 className="mt-10">Restrictions:</h1>
 
@@ -77,17 +79,19 @@ export default function BodyPart({
         );
       })}
 
-      {user != null && user.auth == "admin" && (
-        <Button
-          variant="contained"
-          color="warning"
-          onClick={() => {
-            location.href = "/admin/age_ristriction/" + content.id;
-          }}
-        >
-          edit
-        </Button>
-      )}
+      {user != null &&
+        user.auth == "admin" &&
+        user["privlages"].includes("Editing Content") && (
+          <Button
+            variant="contained"
+            color="warning"
+            onClick={() => {
+              location.href = "/admin/age_ristriction/" + content.id;
+            }}
+          >
+            edit
+          </Button>
+        )}
     </div>
   );
 }

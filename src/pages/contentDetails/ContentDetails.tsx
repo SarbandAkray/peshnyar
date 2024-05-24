@@ -67,17 +67,19 @@ export default function ContentDetails() {
               <div className="text-white">
                 <h1>{content["details"]}</h1>
 
-                {user != null && user.auth == "admin" && (
-                  <Button
-                    variant="contained"
-                    color="warning"
-                    onClick={() => {
-                      location.href = "/admin/generalReview/" + content["id"];
-                    }}
-                  >
-                    edit
-                  </Button>
-                )}
+                {user != null &&
+                  user.auth == "admin" &&
+                  user["privlages"].includes("Editing Content") && (
+                    <Button
+                      variant="contained"
+                      color="warning"
+                      onClick={() => {
+                        location.href = "/admin/generalReview/" + content["id"];
+                      }}
+                    >
+                      edit
+                    </Button>
+                  )}
               </div>
             </div>
             <div>
@@ -111,17 +113,19 @@ export default function ContentDetails() {
                     }
                   })}
                 </h1>
-                {user != null && user.auth == "admin" && (
-                  <Button
-                    variant="contained"
-                    color="warning"
-                    onClick={(e) => {
-                      location.href = "/admin/islamic_review/" + id;
-                    }}
-                  >
-                    edit
-                  </Button>
-                )}
+                {user != null &&
+                  user.auth == "admin" &&
+                  user["privlages"].includes("Editing Content") && (
+                    <Button
+                      variant="contained"
+                      color="warning"
+                      onClick={(e) => {
+                        location.href = "/admin/islamic_review/" + id;
+                      }}
+                    >
+                      edit
+                    </Button>
+                  )}
               </div>
             </div>
           </div>

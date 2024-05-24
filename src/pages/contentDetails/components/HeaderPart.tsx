@@ -23,18 +23,20 @@ export default function HeaderPart({
   return (
     <div className="  flex flex-col">
       <div className="flex  justify-center mt-5 text-white">
-        {user != null && user.auth == "admin" && (
-          <Button
-            variant="contained"
-            color="error"
-            className="w-28"
-            onClick={() => {
-              handleClickOpen();
-            }}
-          >
-            Delete
-          </Button>
-        )}
+        {user != null &&
+          user.auth == "admin" &&
+          user["privlages"].includes("Deleting Content") && (
+            <Button
+              variant="contained"
+              color="error"
+              className="w-28"
+              onClick={() => {
+                handleClickOpen();
+              }}
+            >
+              Delete
+            </Button>
+          )}
       </div>
       <div className="flex  justify-center mt-10">
         <img
@@ -49,18 +51,20 @@ export default function HeaderPart({
       </div>
 
       <div className="flex  justify-center mt-5 text-white">
-        {user != null && user.auth == "admin" && (
-          <Button
-            variant="contained"
-            color="warning"
-            className="w-28"
-            onClick={() => {
-              location.href = "/admin/contents/" + content.id;
-            }}
-          >
-            edit
-          </Button>
-        )}
+        {user != null &&
+          user.auth == "admin" &&
+          user["privlages"].includes("Editing Content") && (
+            <Button
+              variant="contained"
+              color="warning"
+              className="w-28"
+              onClick={() => {
+                location.href = "/admin/contents/" + content.id;
+              }}
+            >
+              edit
+            </Button>
+          )}
       </div>
     </div>
   );

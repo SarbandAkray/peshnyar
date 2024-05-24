@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { decodeToken } from "react-jwt";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 export default function Nav() {
@@ -7,8 +9,12 @@ export default function Nav() {
   const [cats, setCats] = useState([]);
 
   const navigate = useNavigate();
-
-  useEffect(() => {}, []);
+  var user = decodeToken(
+    useSelector((state: any) => state.user.user_session.accessToken)
+  );
+  useEffect(() => {
+    console.log(user["privlages"]);
+  }, []);
 
   return (
     <div className="w-screen flex items-center justify-between px-10 min-h-[5rem] h-fit  bg-lightGray gap-5">
@@ -23,18 +29,29 @@ export default function Nav() {
           <li className="uppercase text-sm">
             <a href="/">Users Page</a>
           </li>
-          <li className="uppercase text-sm">
-            <a href="/admin/contents">Contents</a>
-          </li>
-          <li className="uppercase text-sm">
-            <a href="/admin/generalReview">General Review</a>
-          </li>
-          <li className="uppercase text-sm">
-            <a href="/admin/islamic_review">Islamic Review</a>
-          </li>
-          <li className="uppercase text-sm">
-            <a href="/admin/age_ristriction">Age Restriction</a>
-          </li>
+          {user["privlages"].includes("Create Content") && (
+            <li className="uppercase text-sm">
+              <a href="/admin/contents">Contents</a>
+            </li>
+          )}
+
+          {user["privlages"].includes("General Review") && (
+            <li className="uppercase text-sm">
+              <a href="/admin/generalReview">General Review</a>
+            </li>
+          )}
+
+          {user["privlages"].includes("Islamic Review") && (
+            <li className="uppercase text-sm">
+              <a href="/admin/islamic_review">Islamic Review</a>
+            </li>
+          )}
+
+          {user["privlages"].includes("Age Restriction") && (
+            <li className="uppercase text-sm">
+              <a href="/admin/age_ristriction">Age Restriction</a>
+            </li>
+          )}
         </ul>
       </div>
 
@@ -105,41 +122,55 @@ export default function Nav() {
                 <p className="text-white">{"Users Page"}</p>
               </div>
             </li>
-            <li className="border-b pb-1 border-gray-400 my-8 uppercase">
-              <div
-                className="flex gap-2 cursor-pointer  "
-                onClick={() => (window.location.href = "/admin/contents")}
-              >
-                <p className="text-white">{"Contents"}</p>
-              </div>
-            </li>
-            <li className="border-b pb-1 border-gray-400 my-8 uppercase">
-              <div
-                className="flex gap-2 cursor-pointer  "
-                onClick={() => (window.location.href = "/admin/generalreview")}
-              >
-                <p className="text-white">{"General Review"}</p>
-              </div>
-            </li>
 
-            <li className="border-b pb-1 border-gray-400 my-8 uppercase">
-              <div
-                className="flex gap-2 cursor-pointer  "
-                onClick={() => (window.location.href = "/admin/islamic_review")}
-              >
-                <p className="text-white">{"Islamic Review"}</p>
-              </div>
-            </li>
-            <li className="border-b pb-1 border-gray-400 my-8 uppercase">
-              <div
-                className="flex gap-2 cursor-pointer  "
-                onClick={() =>
-                  (window.location.href = "/admin/age_ristriction")
-                }
-              >
-                <p className="text-white">{"Age Restriction"}</p>
-              </div>
-            </li>
+            {user["privlages"].includes("Create Content") && (
+              <li className="border-b pb-1 border-gray-400 my-8 uppercase">
+                <div
+                  className="flex gap-2 cursor-pointer  "
+                  onClick={() => (window.location.href = "/admin/contents")}
+                >
+                  <p className="text-white">{"Contents"}</p>
+                </div>
+              </li>
+            )}
+            {user["privlages"].includes("General Review") && (
+              <li className="border-b pb-1 border-gray-400 my-8 uppercase">
+                <div
+                  className="flex gap-2 cursor-pointer  "
+                  onClick={() =>
+                    (window.location.href = "/admin/generalreview")
+                  }
+                >
+                  <p className="text-white">{"General Review"}</p>
+                </div>
+              </li>
+            )}
+
+            {user["privlages"].includes("Islamic Review") && (
+              <li className="border-b pb-1 border-gray-400 my-8 uppercase">
+                <div
+                  className="flex gap-2 cursor-pointer  "
+                  onClick={() =>
+                    (window.location.href = "/admin/islamic_review")
+                  }
+                >
+                  <p className="text-white">{"Islamic Review"}</p>
+                </div>
+              </li>
+            )}
+
+            {user["privlages"].includes("Age Restriction") && (
+              <li className="border-b pb-1 border-gray-400 my-8 uppercase">
+                <div
+                  className="flex gap-2 cursor-pointer  "
+                  onClick={() =>
+                    (window.location.href = "/admin/age_ristriction")
+                  }
+                >
+                  <p className="text-white">{"Age Restriction"}</p>
+                </div>
+              </li>
+            )}
           </ul>
         </div>
       </div>

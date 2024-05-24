@@ -78,51 +78,89 @@ export const router = createBrowserRouter([
   },
   {
     path: "/admin/contents",
-    element: <AdminAuthGuard Element={<Contents />} to={"/admin/login"} />,
+    element: (
+      <AdminAuthGuard
+        Element={<Contents />}
+        to={"/admin/login"}
+        privliage={"Create Content"}
+      />
+    ),
     errorElement: <Error />,
   },
   {
     path: "/admin/contents/:id",
     element: (
-      <AdminAuthGuard Element={<ContentsUpdate />} to={"/admin/login"} />
+      <AdminAuthGuard
+        Element={<ContentsUpdate />}
+        to={"/admin/login"}
+        privliage={"Create Content"}
+      />
     ),
     errorElement: <Error />,
   },
   {
     path: "/admin/islamic_review",
-    element: <AdminAuthGuard Element={<IslamicReview />} to={"/admin/login"} />,
+    element: (
+      <AdminAuthGuard
+        Element={<IslamicReview />}
+        to={"/admin/login"}
+        privliage={"Islamic Review"}
+      />
+    ),
     errorElement: <Error />,
   },
   {
     path: "/admin/islamic_review/:id",
     element: (
-      <AdminAuthGuard Element={<GiveIslamicReview />} to={"/admin/login"} />
+      <AdminAuthGuard
+        Element={<GiveIslamicReview />}
+        to={"/admin/login"}
+        privliage={"Islamic Review"}
+      />
     ),
     errorElement: <Error />,
   },
   {
     path: "/admin/age_ristriction",
     element: (
-      <AdminAuthGuard Element={<AgeRestriction />} to={"/admin/login"} />
+      <AdminAuthGuard
+        Element={<AgeRestriction />}
+        to={"/admin/login"}
+        privliage={"Age Restriction"}
+      />
     ),
     errorElement: <Error />,
   },
   {
     path: "/admin/age_ristriction/:id",
     element: (
-      <AdminAuthGuard Element={<GiveAgeRistriction />} to={"/admin/login"} />
+      <AdminAuthGuard
+        Element={<GiveAgeRistriction />}
+        to={"/admin/login"}
+        privliage={"Age Restriction"}
+      />
     ),
     errorElement: <Error />,
   },
   {
     path: "/admin/generalReview",
-    element: <AdminAuthGuard Element={<GeneralReview />} to={"/admin/login"} />,
+    element: (
+      <AdminAuthGuard
+        Element={<GeneralReview />}
+        to={"/admin/login"}
+        privliage={"General Review"}
+      />
+    ),
     errorElement: <Error />,
   },
   {
     path: "/admin/generalReview/:id",
     element: (
-      <AdminAuthGuard Element={<GiveGeneralReview />} to={"/admin/login"} />
+      <AdminAuthGuard
+        Element={<GiveGeneralReview />}
+        to={"/admin/login"}
+        privliage={"General Review"}
+      />
     ),
     errorElement: <Error />,
   },
