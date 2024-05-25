@@ -41,6 +41,7 @@ export default function Contents() {
           />
           <h1>Add Content</h1>
           <AddContentForm
+            content={""}
             handleErrorClickOpen={handleErrorClickOpen}
             handleSuccessClickOpen={handleSuccessClickOpen}
             setErrorMessage={setErrorMessage}
