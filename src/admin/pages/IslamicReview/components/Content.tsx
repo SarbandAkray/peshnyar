@@ -20,7 +20,7 @@ export default function Content({ content }: { content }) {
     >
       <CardMedia
         component="img"
-        height="194"
+        className="h-60"
         image={baseApiImageUrl + content.img_url}
         src={baseApiImageUrl + content.img_url}
       />
