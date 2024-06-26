@@ -135,6 +135,10 @@ export default function Nav({
           </li>
 
           <li className="uppercase text-sm">
+            <a href="https://review.peshnyar.com">Review</a>
+          </li>
+
+          <li className="uppercase text-sm">
             <a href="https://api.peshnyar.com">Api-Docs</a>
           </li>
         </ul>
@@ -278,6 +282,15 @@ export default function Nav({
                 className="z-10 cursor-pointer"
               />
               <a href="https://apply.peshnyar.com">Join-Us</a>
+            </li>
+            <li className="border-b border-gray-400 my-8 uppercase flex gap-2">
+              <img
+                src="/assets/home/joinus.png"
+                alt=""
+                width={15}
+                className="z-10 cursor-pointer"
+              />
+              <a href="https://review.peshnyar.com">Review</a>
             </li>
             <li className="border-b border-gray-400 my-8 uppercase flex gap-2">
               <img src="/assets/home/api.png" alt="" width="15" height="15" />
